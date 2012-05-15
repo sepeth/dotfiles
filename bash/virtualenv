@@ -1,5 +1,5 @@
 mkvirtenv() {
-  [ "$#" -eq 1 ] && mkdir ~/.virtualenvs/$1 && virtualenv ~/.virtualenvs/$1
+  [ "$#" -eq 1 ] && mkdir -p ~/.virtualenvs/$1 && virtualenv ~/.virtualenvs/$1
 }
 
 virtenv() {

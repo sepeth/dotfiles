@@ -1,8 +1,10 @@
+alias ..="cd .."
 alias c="cd"
 alias l="ls"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
+alias lld="ls -ld"
 alias v="vim"
 alias grep="grep --colour"
 alias ga="git add"
@@ -22,3 +24,7 @@ alias mdump='alias|grep -e "alias g[0-9]"|grep -v "alias m" > ~/.bookmarks'
 alias lma='alias | grep -e "alias g[0-9]"|grep -v "alias m"|sed "s/alias //"'
 touch ~/.bookmarks
 source ~/.bookmarks
+
+md() {
+  mkdir -p "$1" && cd "$1"
+}
