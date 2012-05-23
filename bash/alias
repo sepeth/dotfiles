@@ -9,6 +9,7 @@ alias v="vim"
 alias grep="grep --colour"
 alias ga="git add"
 alias gst="git status -sb"
+alias mkdir="mkdir -p"
 
 # Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
