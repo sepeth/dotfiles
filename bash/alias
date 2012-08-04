@@ -1,15 +1,15 @@
 alias ..="cd .."
-alias c="cd"
-alias l="ls"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
 alias lld="ls -ld"
-alias v="vim"
 alias grep="grep --colour"
+alias mkdir="mkdir -p"
+
+# Git aliases
+alias gd="git diff"
 alias ga="git add"
 alias gst="git status -sb"
-alias mkdir="mkdir -p"
 
 # Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
