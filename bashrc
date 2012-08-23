@@ -17,6 +17,3 @@ if is_in_remote; then
 else
     PS1="\W $ "
 fi
-
-HISTFILESIZE=10000
-export CLICOLOR=1
