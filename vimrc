@@ -16,6 +16,7 @@ call pathogen#infect()
 "" Whitespace
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set backspace=indent,eol,start
+set autoindent
 
 "" Searching
 set hlsearch incsearch ignorecase smartcase
