@@ -25,6 +25,9 @@ set hlsearch incsearch ignorecase smartcase
 set wildmode=longest:full
 set wildmenu
 
+"" Buffers
+set hidden
+
 "" 256 Color
 set t_Co=256
 colorscheme xoria256
