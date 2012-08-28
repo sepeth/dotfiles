@@ -6,8 +6,8 @@ set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
 let mapleader = ","
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+nmap <C-s> :w<CR>
+imap <C-s> <Esc>:w<CR>a
 nmap <leader>l :set list!<CR>
 nnoremap <silent> <F5> :call <SID>StripTrailingSpaces()<CR>
 
@@ -28,6 +28,16 @@ set wildmenu
 "" Buffers
 set hidden
 
+"" Windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+"" Mouse
+set mouse=a
+set paste
+
 "" 256 Color
 set t_Co=256
 colorscheme xoria256
@@ -41,6 +51,8 @@ if has("autocmd")
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
+  autocmd InsertEnter * set cul
+  autocmd InsertLeave * set nocul
 endif
 
 "" Javascript
