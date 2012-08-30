@@ -2,6 +2,8 @@ set nocompatible
 syntax enable
 set encoding=utf-8
 set showcmd number ruler
+set history=1000
+set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
@@ -22,7 +24,7 @@ set autoindent
 set hlsearch incsearch ignorecase smartcase
 
 "" Wildmenu
-set wildmode=longest:full
+set wildmode=longest,list
 set wildmenu
 
 "" Buffers
@@ -36,7 +38,6 @@ map <C-l> <C-w>l
 
 "" Mouse
 set mouse=a
-set paste
 
 "" 256 Color
 set t_Co=256
@@ -51,8 +52,8 @@ if has("autocmd")
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
-  autocmd InsertEnter * set cul
-  autocmd InsertLeave * set nocul
+  autocmd InsertEnter * set cursorline
+  autocmd InsertLeave * set nocursorline
 endif
 
 "" Javascript
