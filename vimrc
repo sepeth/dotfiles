@@ -72,3 +72,14 @@ function! <SID>StripTrailingSpaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set ts = sts = sw = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  set et
+endfunction
