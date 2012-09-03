@@ -30,3 +30,7 @@ source ~/.bookmarks
 md() {
   mkdir -p "$1" && cd "$1"
 }
+
+command -v sudoedit >/dev/null || {
+  alias sudoedit='sudo -e'
+}
