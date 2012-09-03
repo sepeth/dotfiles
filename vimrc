@@ -1,7 +1,7 @@
 set nocompatible
 syntax enable
 set encoding=utf-8
-set showcmd number ruler
+set showcmd ruler number numberwidth=6
 set history=1000
 set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
@@ -18,7 +18,7 @@ call pathogen#infect()
 "" Whitespace
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set backspace=indent,eol,start
-set autoindent
+set autoindent shiftround
 
 "" Searching
 set hlsearch incsearch ignorecase smartcase
