@@ -1,16 +1,17 @@
-alias ..="cd .."
-alias la="ls -a"
-alias ll="ls -l"
-alias lla="ls -la"
-alias lld="ls -ld"
-alias grep="grep --colour"
-alias mkdir="mkdir -p"
-alias psg="ps aux |grep -i"
+alias ..='cd ..'
+alias la='ls -a'
+alias ll='ls -l'
+alias lla='ls -la'
+alias lld='ls -ld'
+alias grep='grep --colour'
+alias mkdir='mkdir -p'
+alias psg='ps aux |grep -i'
+alias sude='sudo -e'
 
 # Git aliases
-alias gd="git diff"
-alias ga="git add"
-alias gst="git status -sb"
+alias gd='git diff'
+alias ga='git add'
+alias gst='git status -sb'
 
 # Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
@@ -29,8 +30,4 @@ source ~/.bookmarks
 
 md() {
   mkdir -p "$1" && cd "$1"
-}
-
-command -v sudoedit >/dev/null || {
-  alias sudoedit='sudo -e'
 }
