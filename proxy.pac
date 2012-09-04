@@ -2,13 +2,14 @@ function FindProxyForURL(url, host) {
   var fallback = 'DIRECT';
 
   var proxies = {
-    'yildiz-ktp': 'PROXY libpxy.cc.yildiz.edu.tr:81; ' + fallback
+    'yildizlib': 'PROXY libpxy.cc.yildiz.edu.tr:81; ' + fallback
   };
 
   var hosts = {
-    'ieeexplore.ieee.org': 'yildiz-ktp',
-    '*.jstor.org': 'yildiz-ktp',
-    '*.safaribooksonline.com': 'yildiz-ktp'
+    'ieeexplore.ieee.org': 'yildizlib',
+    '*.jstor.org': 'yildizlib',
+    '*.safaribooksonline.com': 'yildizlib',
+    '*.acm.org': 'yildizlib'
   };
 
   if (isPlainHostName(host)) {
