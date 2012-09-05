@@ -8,10 +8,12 @@ set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
 let mapleader = ","
-nmap <C-s> :w<CR>
-imap <C-s> <Esc>:w<CR>a
-nmap <leader>l :set list!<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <leader>l :set list!<CR>
 nnoremap <silent> <F5> :call <SID>StripTrailingSpaces()<CR>
+nnoremap <C-u> viwUw
+inoremap <C-u> <Esc>viwUwa
 
 call pathogen#infect()
 
