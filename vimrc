@@ -10,10 +10,13 @@ set listchars=tab:▸\ ,eol:$
 let mapleader = ","
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
-nnoremap <leader>l :set list!<CR>
-nnoremap <silent> <F5> :call <SID>StripTrailingSpaces()<CR>
 nnoremap <C-u> viwUw
 inoremap <C-u> <Esc>viwUwa
+noremap  <leader>l :set list!<CR>
+nnoremap <leader>f :set fullscreen!<CR>
+nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
 call pathogen#infect()
 
@@ -33,10 +36,10 @@ set wildmenu
 set hidden
 
 "" Windows
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 "" Mouse
 set mouse=a
@@ -67,7 +70,6 @@ set wildignore+=dist/*,build/*,*.egg-info,*.egg
 "" GUI
 set visualbell guioptions-=T guioptions-=L guioptions-=r
 set guifont=Monaco:h12
-nnoremap <C-CR> :set fullscreen<CR>
 
 "" Functions
 function! <SID>StripTrailingSpaces()
