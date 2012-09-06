@@ -1,0 +1,9 @@
+snippet scr
+	<script src="${1}.js"></script>${2}
+snippet hd
+	<head>
+		<meta charset="utf-8">
+		<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
+	</head>
+snippet css
+	<link rel="stylesheet" href="${1}.css">${2}
