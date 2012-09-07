@@ -9,7 +9,8 @@ function FindProxyForURL(url, host) {
     'ieeexplore.ieee.org': 'yildizlib',
     '*.jstor.org': 'yildizlib',
     '*.safaribooksonline.com': 'yildizlib',
-    '*.acm.org': 'yildizlib'
+    '*.acm.org': 'yildizlib',
+    'journals.cambridge.org': 'yildizlib'
   };
 
   if (isPlainHostName(host)) {
