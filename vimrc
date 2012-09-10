@@ -55,6 +55,7 @@ highlight SpecialKey guifg=#4a4a59
 if has("autocmd")
   filetype plugin indent on
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType snippet,snippets setlocal noexpandtab
   autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   autocmd InsertEnter * set cursorline
@@ -62,7 +63,7 @@ if has("autocmd")
 endif
 
 "" Javascript
-set wildignore+=node_modules/*
+set wildignore+=node_modules/*,*.min.js
 
 "" Python
 set wildignore+=dist/*,build/*,*.egg-info,*.egg
@@ -92,3 +93,8 @@ function! Stab()
   endif
   set et
 endfunction
+
+"" snipMate
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases.dustjs = 'dustjs,html'

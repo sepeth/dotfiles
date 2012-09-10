@@ -16,3 +16,6 @@
 [submodule "vim/bundle/snipmate-snippets"]
 	path = vim/bundle/snipmate-snippets
 	url = https://github.com/honza/snipmate-snippets.git
+[submodule "vim/bundle/dustjs"]
+	path = vim/bundle/dustjs
+	url = git://github.com/jimmyhchan/dustjs.vim.git
