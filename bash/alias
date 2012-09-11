@@ -7,6 +7,7 @@ alias grep='grep --colour'
 alias mkdir='mkdir -p'
 alias psg='ps aux |grep -i'
 alias sude='sudo -e'
+alias serve='python -m SimpleHTTPServer'
 
 # Git aliases
 alias gd='git diff'
