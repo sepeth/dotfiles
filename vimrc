@@ -79,6 +79,7 @@ set wildignore+=dist/*,build/*,*.egg-info,*.egg
 "" GUI
 set visualbell guioptions-=T guioptions-=L guioptions-=r
 set guifont=Monaco:h12
+set linespace=1
 
 "" Functions
 function! <SID>StripTrailingSpaces()
