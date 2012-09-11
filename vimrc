@@ -14,6 +14,7 @@ nnoremap <C-u> viwUw
 inoremap <C-u> <Esc>viwUwa
 noremap  <leader>l :set list!<CR>
 nnoremap <leader>f :set fullscreen!<CR>
+nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
