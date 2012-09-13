@@ -16,6 +16,8 @@ noremap  <leader>l :set list!<CR>
 nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
+nnoremap <leader>n :lnext<CR>
+nnoremap <leader>p :lprev<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " make it harder to do bad habits
@@ -29,7 +31,7 @@ inoremap <right> <nop>
 call pathogen#infect()
 
 "" Whitespace
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set backspace=indent,eol,start
 set autoindent shiftround
 
@@ -62,7 +64,7 @@ highlight SpecialKey guifg=#4a4a59
 
 if has("autocmd")
   filetype plugin indent on
-  autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType snippet,snippets setlocal noexpandtab
   autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
