@@ -8,6 +8,7 @@ set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
 let mapleader = ","
+let maplocalleader = ","
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-u> viwUw
@@ -18,7 +19,7 @@ nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
 nnoremap <leader>n :lnext<CR>
 nnoremap <leader>p :lprev<CR>
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " make it harder to do bad habits
 inoremap jk <esc>
@@ -64,12 +65,16 @@ highlight SpecialKey guifg=#4a4a59
 
 if has("autocmd")
   filetype plugin indent on
-  autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  augroup vimrc_aucmd
+  autocmd!
+  autocmd FileType ruby,vim setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd FileType snippet,snippets setlocal noexpandtab
   autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+  autocmd BufNewFile,BufRead *.html setlocal nowrap
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   autocmd InsertEnter * set cursorline
   autocmd InsertLeave * set nocursorline
+  augroup END
 endif
 
 "" Javascript
