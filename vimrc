@@ -29,6 +29,9 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+"" Operator-pending mappings
+onoremap <silent> F :<C-u>normal! 0f(hviw<CR>
+
 call pathogen#infect()
 
 "" Whitespace
@@ -74,6 +77,8 @@ if has("autocmd")
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   autocmd InsertEnter * set cursorline
   autocmd InsertLeave * set nocursorline
+  autocmd FocusGained * CommandTFlush
+  autocmd BufWritePost * CommandTFlush
   augroup END
 endif
 
