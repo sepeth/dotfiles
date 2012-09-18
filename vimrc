@@ -60,20 +60,17 @@ set mouse=a
 
 "" 256 Color
 set t_Co=256
-colorscheme xoria256
-
-"" Invisible character colors
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+colorscheme candycode
 
 if has("autocmd")
   filetype plugin indent on
   augroup vimrc_aucmd
   autocmd!
-  autocmd FileType ruby,vim setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType ruby,vim,jade,stylus,javascript setlocal ts=2 sts=2 sw=2
   autocmd FileType snippet,snippets setlocal noexpandtab
-  autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
-  autocmd BufNewFile,BufRead *.html setlocal nowrap
+  autocmd BufEnter *.rss,*.atom setfiletype xml
+  autocmd BufEnter *.html setlocal nowrap
+  autocmd BufEnter volofile setfiletype javascript
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   autocmd InsertEnter * set cursorline
   autocmd InsertLeave * set nocursorline
