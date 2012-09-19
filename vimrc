@@ -7,6 +7,20 @@ set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
+"" Set Status Line
+set laststatus=2
+set statusline=%n\       " Buffer number
+set statusline+=%f\      " Path to the file
+set statusline+=%m\      " Modified flag 
+set statusline+=%r\      " Read-Only flag
+set statusline+=%=       " Switch to the right side
+set statusline+=%B\      " Hex-value of a current char
+set statusline+=%l:%c    " Current line and col
+set statusline+=/        " Seperator
+set statusline+=%L\      " Total lines
+set statusline+=%y       " File type
+
+"" Keymappings
 let mapleader = ","
 let maplocalleader = ","
 nnoremap <C-s> :w<CR>
@@ -69,7 +83,7 @@ if has("autocmd")
   autocmd FileType ruby,vim,jade,stylus,javascript setlocal ts=2 sts=2 sw=2
   autocmd FileType snippet,snippets setlocal noexpandtab
   autocmd BufEnter *.rss,*.atom setfiletype xml
-  autocmd BufEnter *.html setlocal nowrap
+  autocmd BufEnter *.html setlocal nowrap ts=2 sts=2 sw=2
   autocmd BufEnter volofile setfiletype javascript
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   autocmd InsertEnter * set cursorline
