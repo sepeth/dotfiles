@@ -1,3 +1,4 @@
+" Basic Settings {{{
 set nocompatible
 syntax enable
 set encoding=utf-8
@@ -6,8 +7,10 @@ set history=1000
 set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
+call pathogen#infect()
+" }}}
 
-"" Set Status Line
+" Status Line {{{
 set laststatus=2
 set statusline=%n\       " Buffer number
 set statusline+=%f\      " Path to the file
@@ -19,8 +22,9 @@ set statusline+=%l:%c    " Current line and col
 set statusline+=/        " Seperator
 set statusline+=%L\      " Total lines
 set statusline+=%y       " File type
+" }}}
 
-"" Keymappings
+" Keymappings {{{
 let mapleader = ","
 let maplocalleader = ","
 nnoremap <C-s> :w<CR>
@@ -42,69 +46,40 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-
-"" Operator-pending mappings
-onoremap <silent> F :<C-u>normal! 0f(hviw<CR>
-
-call pathogen#infect()
-
-"" Whitespace
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-set backspace=indent,eol,start
-set autoindent shiftround
-
-"" Searching
-set hlsearch incsearch ignorecase smartcase
-
-"" Wildmenu
-set wildmode=longest,list
-set wildmenu
-
-"" Buffers
-set hidden
-
-"" Windows
+" Window navigation
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+" }}}
 
-"" Mouse
+" Operator-pending mappings {{{
+onoremap <silent> F :<C-u>normal! 0f(hviw<CR>
+" }}}
+
+" Whitespace & Searching {{{
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set backspace=indent,eol,start
+set autoindent shiftround
+set hlsearch incsearch ignorecase smartcase
+" }}}
+
+" User Interface {{{
+set wildignore+=node_modules/*,*.min.js           " Javascript
+set wildignore+=dist/*,build/*,*.egg-info,*.egg   " Python
+set wildmode=longest,list
+set wildmenu
+set hidden                                        " Permit hidden buffers
 set mouse=a
-
-"" 256 Color
-set t_Co=256
+set t_Co=256                                      " 256 colors
 colorscheme candycode
-
-if has("autocmd")
-  filetype plugin indent on
-  augroup vimrc_aucmd
-  autocmd!
-  autocmd FileType ruby,vim,jade,stylus,javascript setlocal ts=2 sts=2 sw=2
-  autocmd FileType snippet,snippets setlocal noexpandtab
-  autocmd BufEnter *.rss,*.atom setfiletype xml
-  autocmd BufEnter *.html setlocal nowrap ts=2 sts=2 sw=2
-  autocmd BufEnter volofile setfiletype javascript
-  autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
-  autocmd InsertEnter * set cursorline
-  autocmd InsertLeave * set nocursorline
-  autocmd FocusGained * CommandTFlush
-  autocmd BufWritePost * CommandTFlush
-  augroup END
-endif
-
-"" Javascript
-set wildignore+=node_modules/*,*.min.js
-
-"" Python
-set wildignore+=dist/*,build/*,*.egg-info,*.egg
-
-"" GUI
+" GUI specific options
 set visualbell guioptions-=T guioptions-=L guioptions-=r
 set guifont=Monaco:h12
 set linespace=1
+" }}}
 
-"" Functions
+" Functions {{{
 function! <SID>StripTrailingSpaces()
   " save last search, and cursor position
   let _s=@/
@@ -125,8 +100,43 @@ function! Stab()
   endif
   set et
 endfunction
+" }}}
 
-"" snipMate
+" snipMate {{{
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases.dustjs = 'dustjs,html'
+" }}}
+
+if has("autocmd")
+  filetype plugin indent on
+
+  " General programming autocmds {{{
+  augroup programming_au
+    autocmd!
+    autocmd FileType ruby,vim,jade,stylus,javascript,html setlocal ts=2 sts=2 sw=2
+    autocmd FileType html setlocal nowrap
+    autocmd FileType snippet,snippets setlocal noexpandtab
+    autocmd BufEnter *.rss,*.atom setfiletype xml
+    autocmd BufEnter volofile setfiletype javascript
+    autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
+  augroup END
+  " }}}
+
+  " Vim autocmds  {{{
+  augroup vim_au
+    autocmd!
+    autocmd InsertEnter * set cursorline
+    autocmd InsertLeave * set nocursorline
+    autocmd FocusGained * CommandTFlush
+    autocmd BufWritePost * CommandTFlush
+  augroup END
+  " }}}
+
+  " Vimscript file settings {{{
+  augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+  augroup END
+  " }}}
+endif
