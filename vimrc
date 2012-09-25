@@ -98,7 +98,7 @@ function! Stab()
     let &l:ts = l:tabstop
     let &l:sw = l:tabstop
   endif
-  set et
+  setlocal expandtab
 endfunction
 " }}}
 
@@ -118,6 +118,7 @@ if has("autocmd")
     autocmd FileType html setlocal nowrap
     autocmd FileType snippet,snippets setlocal noexpandtab
     autocmd BufEnter *.rss,*.atom setfiletype xml
+    autocmd BufEnter *.md setfiletype markdown
     autocmd BufEnter volofile setfiletype javascript
     autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   augroup END
