@@ -119,6 +119,7 @@ if has("autocmd")
     autocmd FileType snippet,snippets setlocal noexpandtab
     autocmd BufEnter *.rss,*.atom setfiletype xml
     autocmd BufEnter *.md setfiletype markdown
+    autocmd BufEnter *.arc setfiletype arc
     autocmd BufEnter volofile setfiletype javascript
     autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
   augroup END
