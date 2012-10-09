@@ -39,6 +39,7 @@ nnoremap <leader>n :lnext<CR>
 nnoremap <leader>p :lprev<CR>
 nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+let g:ctrlp_map = '<leader>t'
 " make it harder to do bad habits
 inoremap jk <esc>
 inoremap <esc> <nop>
@@ -130,8 +131,6 @@ if has("autocmd")
     autocmd!
     autocmd InsertEnter * set cursorline
     autocmd InsertLeave * set nocursorline
-    autocmd FocusGained * CommandTFlush
-    autocmd BufWritePost * CommandTFlush
   augroup END
   " }}}
 
