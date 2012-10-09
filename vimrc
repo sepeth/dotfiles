@@ -65,8 +65,8 @@ set hlsearch incsearch ignorecase smartcase
 " }}}
 
 " User Interface {{{
-set wildignore+=node_modules/*,*.min.js           " Javascript
-set wildignore+=dist/*,build/*,*.egg-info,*.egg   " Python
+set wildignore+=node_modules/*,*.min.js               " Javascript
+set wildignore+=*.pyc,dist/*,build/*,*.egg-info,*.egg " Python
 set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
