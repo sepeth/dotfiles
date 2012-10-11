@@ -54,6 +54,10 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 " }}}
 
+" Abbrevs {{{
+iabbrev <// </<C-X><C-O>
+" }}}
+
 " Operator-pending mappings {{{
 onoremap <silent> F :<C-u>normal! 0f(hviw<CR>
 " }}}
@@ -118,7 +122,7 @@ if has("autocmd")
     autocmd FileType ruby,vim,jade,stylus,javascript,html setlocal ts=2 sts=2 sw=2
     autocmd FileType html setlocal nowrap
     autocmd FileType snippet,snippets setlocal noexpandtab
-    autocmd BufEnter *.rss,*.atom setfiletype xml
+    autocmd BufEnter *.rss,*.atom,*.odrl setfiletype xml
     autocmd BufEnter *.md setfiletype markdown
     autocmd BufEnter *.arc setfiletype arc
     autocmd BufEnter volofile setfiletype javascript
