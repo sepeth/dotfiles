@@ -39,6 +39,8 @@ nnoremap <leader>n :lnext<CR>
 nnoremap <leader>p :lprev<CR>
 nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>m :CtrlPMixed<CR>
 let g:ctrlp_map = '<leader>t'
 " make it harder to do bad habits
 inoremap jk <esc>
@@ -77,6 +79,7 @@ set wildmenu
 set hidden                                        " Permit hidden buffers
 set mouse=a
 set t_Co=256                                      " 256 colors
+set background=dark
 colorscheme candycode
 " GUI specific options
 set visualbell guioptions-=T guioptions-=L guioptions-=r
