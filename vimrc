@@ -7,6 +7,14 @@ set history=1000
 set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
+
+" Do not keep a backup file if has vms
+if has("vms")
+  set nobackup
+else
+  set backup
+endif
+
 call pathogen#infect()
 " }}}
 
@@ -29,8 +37,8 @@ let mapleader = ","
 let maplocalleader = ","
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
-nnoremap <C-u> viwUw
-inoremap <C-u> <Esc>viwUwa
+nnoremap <C-l> viwUw
+inoremap <C-l> <Esc>viwUwa
 noremap  <leader>l :set list!<CR>
 nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>h :nohlsearch<CR>
@@ -41,7 +49,9 @@ nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>g :Ack<CR>
 let g:ctrlp_map = '<leader>t'
+
 " make it harder to do bad habits
 inoremap jk <esc>
 inoremap <esc> <nop>
@@ -49,11 +59,16 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
 " Window navigation
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" start new undo seq before some kill keys
+inoremap <C-u> <C-g>u<C-u>
+inoremap <C-w> <C-g>u<C-w>
 " }}}
 
 " Abbrevs {{{
@@ -77,14 +92,18 @@ set wildignore+=*.pyc,dist/*,build/*,*.egg-info,*.egg " Python
 set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
-set mouse=a
 set t_Co=256                                      " 256 colors
 set background=dark
 colorscheme candycode
+
 " GUI specific options
 set visualbell guioptions-=T guioptions-=L guioptions-=r
 set guifont=Monaco:h12
 set linespace=1
+
+if has('mouse')
+  set mouse=a
+endif
 " }}}
 
 " Functions {{{
@@ -130,6 +149,11 @@ if has("autocmd")
     autocmd BufEnter *.arc setfiletype arc
     autocmd BufEnter volofile setfiletype javascript
     autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
+    " Jump to last cursor position
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
   augroup END
   " }}}
 
