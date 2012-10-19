@@ -10,7 +10,8 @@ function FindProxyForURL(url, host) {
     '*.jstor.org': 'yildizlib',
     '*.safaribooksonline.com': 'yildizlib',
     '*.acm.org': 'yildizlib',
-    'journals.cambridge.org': 'yildizlib'
+    'journals.cambridge.org': 'yildizlib',
+    'distro.cc.yildiz.edu.tr': 'yildizlib'
   };
 
   if (isPlainHostName(host)) {
