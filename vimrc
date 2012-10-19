@@ -8,13 +8,6 @@ set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
-" Do not keep a backup file if has vms
-if has("vms")
-  set nobackup
-else
-  set backup
-endif
-
 call pathogen#infect()
 " }}}
 
@@ -50,6 +43,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>g :Ack<CR>
+nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
 
 " make it harder to do bad habits
@@ -73,10 +67,6 @@ inoremap <C-w> <C-g>u<C-w>
 
 " Abbrevs {{{
 iabbrev <// </<C-X><C-O>
-" }}}
-
-" Operator-pending mappings {{{
-onoremap <silent> F :<C-u>normal! 0f(hviw<CR>
 " }}}
 
 " Whitespace & Searching {{{
