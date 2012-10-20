@@ -9,6 +9,7 @@ set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 
 call pathogen#infect()
+call pathogen#helptags()
 " }}}
 
 " Status Line {{{
@@ -40,6 +41,7 @@ nnoremap <leader>n :lnext<CR>
 nnoremap <leader>p :lprev<CR>
 nnoremap <leader>ev :split $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>d :CtrlPBookmarkDir<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>g :Ack<CR>
