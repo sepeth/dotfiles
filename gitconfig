@@ -8,6 +8,11 @@
 	editor = /usr/bin/vim
 	pager = less -FRSX
 [alias]
-	logl = log --oneline --decorate
+	lo = log --oneline --decorate
 	st = status --short --branch
+	ci = commit
+	br = branch
+	co = checkout
+	unstage = reset HEAD --
+	last = log -1 HEAD
 	sync = "!f() { echo Syncing $1 with master && git checkout master && git pull && git checkout $1 && git rebase master; }; f"

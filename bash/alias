@@ -8,6 +8,9 @@ alias mkdir='mkdir -p'
 alias psg='ps aux |grep -i'
 alias sude='sudo -e'
 alias serve='python -m SimpleHTTPServer'
+alias tree='tree -C'
+alias trls='tree -C |less -R'
+alias fnls='find . |less'
 
 # Git aliases
 alias gd='git diff'
@@ -28,6 +31,10 @@ alias mdump='alias|grep -e "alias g[0-9]"|grep -v "alias m" > ~/.bookmarks'
 alias lma='alias | grep -e "alias g[0-9]"|grep -v "alias m"|sed "s/alias //"'
 touch ~/.bookmarks
 source ~/.bookmarks
+
+cf() {
+  cd *$1*/
+}
 
 md() {
   mkdir -p "$1" && cd "$1"
