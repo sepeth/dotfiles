@@ -4,5 +4,6 @@
     "jquery": true,
     "devel": true,
     "es5": true,
-    "newcap": true
+    "newcap": true,
+    "eqnull": true
 }
