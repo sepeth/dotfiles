@@ -29,22 +29,22 @@ set statusline+=%y       " File type
 " Keymappings {{{
 let mapleader = ","
 let maplocalleader = ","
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <Esc>:w<CR>a
 nnoremap <C-l> viwUw
 inoremap <C-l> <Esc>viwUwa
-noremap  <leader>l :set list!<CR>
-nnoremap <leader>f :set fullscreen!<CR>
-nnoremap <leader>h :nohlsearch<CR>
-nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
-nnoremap <leader>n :lnext<CR>
-nnoremap <leader>p :lprev<CR>
-nnoremap <leader>ev :split $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>d :CtrlPBookmarkDir<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>d :CtrlPBookmarkDir<CR>
+nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>g :Ack<CR>
+nnoremap <leader>h :nohlsearch<CR>
+nnoremap <leader>j :lnext<CR>
+nnoremap <leader>k :lprev<CR>
+nnoremap <leader>l :set list!<CR>
+nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
 
