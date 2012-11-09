@@ -45,6 +45,9 @@ nnoremap <leader>l :set list!<CR>
 nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>w :match Error /\s\+$/<CR>
+nnoremap <leader>W :match Error //<CR>
+nnoremap <leader>/ /\v
 nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
 
