@@ -29,22 +29,28 @@ set statusline+=%y       " File type
 " Keymappings {{{
 let mapleader = ","
 let maplocalleader = ","
+cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 nnoremap <C-l> viwUw
 inoremap <C-l> <Esc>viwUwa
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>a
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>d :CtrlPBookmarkDir<CR>
-nnoremap <leader>ev :split $MYVIMRC<CR>
+nnoremap <leader>db :CtrlPBuffer<CR>
+nnoremap <leader>dd :CtrlPBookmarkDir<CR>
+nnoremap <leader>da :CtrlPBookmarkDirAdd<CR>
+nnoremap <leader>dm :CtrlPMixed<CR>
+    nmap <leader>ew :e %%
+    nmap <leader>es :sp %%
+    nmap <leader>ev :vsp %%
+    nmap <leader>et :tabe %%
 nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>g :Ack<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>j :lnext<CR>
 nnoremap <leader>k :lprev<CR>
 nnoremap <leader>l :set list!<CR>
-nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ve :split $MYVIMRC<CR>
+nnoremap <leader>vs :source $MYVIMRC<CR>
 nnoremap <leader>w :match Error /\s\+$/<CR>
 nnoremap <leader>W :match Error //<CR>
 nnoremap <leader>/ /\v
