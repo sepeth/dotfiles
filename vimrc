@@ -7,6 +7,7 @@ set history=1000
 set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
+set display=lastline
 
 call pathogen#infect()
 call pathogen#helptags()
@@ -74,6 +75,12 @@ noremap <C-l> <C-w>l
 " start new undo seq before some kill keys
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
+
+" move inside visible line
+noremap <D-j> gj
+noremap <D-k> gk
+noremap <D-$> g$
+noremap <D-7> g0
 " }}}
 
 " Abbrevs {{{
