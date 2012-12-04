@@ -33,8 +33,6 @@ let maplocalleader = ","
 cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 nnoremap <C-l> viwUw
 inoremap <C-l> <Esc>viwUwa
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <Esc>:w<CR>a
 nnoremap <leader>db :CtrlPBuffer<CR>
 nnoremap <leader>dd :CtrlPBookmarkDir<CR>
 nnoremap <leader>da :CtrlPBookmarkDirAdd<CR>
@@ -50,10 +48,10 @@ nnoremap <leader>j :lnext<CR>
 nnoremap <leader>k :lprev<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
-nnoremap <leader>ve :split $MYVIMRC<CR>
-nnoremap <leader>vs :source $MYVIMRC<CR>
-nnoremap <leader>w :match Error /\s\+$/<CR>
-nnoremap <leader>W :match Error //<CR>
+nnoremap <leader>v :split $MYVIMRC<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>z :match Error /\s\+$/<CR>
+nnoremap <leader>Z :match Error //<CR>
 nnoremap <leader>/ /\v
 nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
@@ -65,6 +63,7 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+inoremap <C-c> <nop>
 
 " Window navigation
 noremap <C-h> <C-w>h
@@ -141,6 +140,7 @@ endfunction
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases.dustjs = 'dustjs,html'
+let g:snipMate.scope_aliases.htmldjango = 'django,html'
 " }}}
 
 if has("autocmd")
@@ -177,6 +177,7 @@ if has("autocmd")
   augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+    autocmd BufWritePost .vimrc source $MYVIMRC
   augroup END
   " }}}
 endif
