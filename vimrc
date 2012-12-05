@@ -11,6 +11,7 @@ set display=lastline
 
 call pathogen#infect()
 call pathogen#helptags()
+source $VIMRUNTIME/macros/matchit.vim
 " }}}
 
 " Status Line {{{
@@ -44,8 +45,6 @@ nnoremap <leader>dm :CtrlPMixed<CR>
 nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>g :Ack<CR>
 nnoremap <leader>h :nohlsearch<CR>
-nnoremap <leader>j :lnext<CR>
-nnoremap <leader>k :lprev<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
 nnoremap <leader>v :split $MYVIMRC<CR>
@@ -55,6 +54,16 @@ nnoremap <leader>Z :match Error //<CR>
 nnoremap <leader>/ /\v
 nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
+
+" Bubble single lines
+nmap <C-up> [e
+nmap <C-down> ]e
+" Bubble multiple lines
+vmap <C-up> [egv
+vmap <C-down> ]egv
+
+" Visually select last edited/pasted text
+nnoremap gV `[v`]
 
 " make it harder to do bad habits
 inoremap jk <esc>
