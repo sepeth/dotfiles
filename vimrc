@@ -21,10 +21,9 @@ set statusline+=%f\      " Path to the file
 set statusline+=%m\      " Modified flag 
 set statusline+=%r\      " Read-Only flag
 set statusline+=%=       " Switch to the right side
+set statusline+=%c:%l\   " Current col and line
+set statusline+=[%L]\    " Total lines
 set statusline+=%B\      " Hex-value of a current char
-set statusline+=%l:%c    " Current line and col
-set statusline+=/        " Seperator
-set statusline+=%L\      " Total lines
 set statusline+=%y       " File type
 " }}}
 
@@ -34,6 +33,8 @@ let maplocalleader = ","
 cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 nnoremap <C-l> viwUw
 inoremap <C-l> <Esc>viwUwa
+ noremap <leader>ae :Tabularize /=<CR>
+ noremap <leader>ac :Tabularize /:<CR>
 nnoremap <leader>db :CtrlPBuffer<CR>
 nnoremap <leader>dd :CtrlPBookmarkDir<CR>
 nnoremap <leader>da :CtrlPBookmarkDirAdd<CR>
