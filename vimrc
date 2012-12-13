@@ -55,6 +55,7 @@ nnoremap <leader>Z :match Error //<CR>
 nnoremap <leader>/ /\v
 nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
+nnoremap <F5> :GundoToggle<CR>
 
 " Bubble single lines
 nmap <C-up> [e
@@ -109,9 +110,9 @@ set wildignore+=*.pyc,dist/*,build/*,*.egg-info,*.egg " Python
 set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
-set t_Co=256                                      " 256 colors
-set background=dark
-colorscheme candycode
+set t_Co=16                                       " 16 colors
+set background=light
+colorscheme solarized
 
 " GUI specific options
 set visualbell guioptions-=T guioptions-=L guioptions-=r
