@@ -55,3 +55,6 @@
 [submodule "vim/bundle/VimClojure"]
 	path = vim/bundle/VimClojure
 	url = git://github.com/vim-scripts/VimClojure.git
+[submodule "bash/z"]
+	path = bash/z
+	url = git://github.com/rupa/z.git
