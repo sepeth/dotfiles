@@ -29,7 +29,7 @@ set statusline+=%y       " File type
 
 " Keymappings {{{
 let mapleader = ","
-let maplocalleader = ","
+let maplocalleader = '\'
 cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 nnoremap <C-l> viwUw
 inoremap <C-l> <Esc>viwUwa
@@ -47,6 +47,7 @@ nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>g :Ack<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>l :set list!<CR>
+nnoremap <leader>o :only<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
 nnoremap <leader>v :split $MYVIMRC<CR>
 nnoremap <leader>w :w<CR>
@@ -166,8 +167,9 @@ if has("autocmd")
     autocmd BufEnter *.rss,*.atom,*.odrl setfiletype xml
     autocmd BufEnter *.md setfiletype markdown
     autocmd BufEnter *.arc setfiletype arc
+    autocmd BufEnter *.go setlocal noet ts=4 sts=4 sw=4
     autocmd BufEnter volofile setfiletype javascript
-    autocmd BufWritePre *.py,*.js,*.rb,*.lisp :call <SID>StripTrailingSpaces()
+    autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css :call <SID>StripTrailingSpaces()
     " Jump to last cursor position
     autocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -192,3 +194,7 @@ if has("autocmd")
   augroup END
   " }}}
 endif
+
+" Clojure {{{
+let vimclojure#ParenRainbow = 1
+" }}}

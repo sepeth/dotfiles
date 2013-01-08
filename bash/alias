@@ -40,3 +40,8 @@ cf() {
 md() {
   mkdir -p "$1" && cd "$1"
 }
+
+# Ask wikipedia
+wp() {
+  dig +short txt ${1}.wp.dg.cx
+}
