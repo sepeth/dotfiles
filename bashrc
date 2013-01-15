@@ -31,9 +31,10 @@ alias mkdir='mkdir -p'
 alias psg='ps aux |grep -i'
 alias sude='sudo -e'
 alias serve='python -m SimpleHTTPServer'
+alias less='less -FRX'
 alias tree='tree -C'
-alias trls='tree -C |less -R'
-alias fnls='find . |less'
+alias trls='tree -C |less -FRX'
+alias fnls='find . |less -FRX'
 
 ## Git aliases
 alias gd='git diff'
