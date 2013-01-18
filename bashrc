@@ -98,5 +98,7 @@ for file in "$BASEDIR"/bash/local_*; do
     source $file
 done
 
+command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
+
 ## Bash submodules
 source "$BASEDIR"/bash/z/z.sh
