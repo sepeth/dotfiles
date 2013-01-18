@@ -94,7 +94,7 @@ SELF=$(test -L "$BASH_SOURCE" && readlink -n "$BASH_SOURCE" || echo "$BASH_SOURC
 BASEDIR=$(dirname "$BASH_SOURCE")"/"$(dirname $SELF)
 
 # load machine specific files in bash/
-for file in "$BASEDIR"/bash/local_*; do
+for file in "$BASEDIR"/bash/local/*; do
     source $file
 done
 
