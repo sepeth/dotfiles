@@ -100,5 +100,7 @@ done
 
 command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
 
+export RLWRAP_HOME="$BASEDIR"/rlwrap
+
 ## Bash submodules
 source "$BASEDIR"/bash/z/z.sh
