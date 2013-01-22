@@ -1,22 +1,25 @@
 ## Set some vars
+SELF=$(test -L "$BASH_SOURCE" && readlink -n "$BASH_SOURCE" || echo "$BASH_SOURCE")
+BASEDIR=$(dirname "$BASH_SOURCE")"/"$(dirname $SELF)
 EDITOR=vim
 VISUAL=$EDITOR
 export EDITOR VISUAL
+export GPG_TTY=$(tty)
 export CLICOLOR=1
-
-GPG_TTY=$(tty)
-export GPG_TTY
-
-if [[ -z "$SSH_TTY" ]]; then
-    PS1="\W $ "
-else
-    PS1="[\u@\h \W]\$ "
-fi
+export RLWRAP_HOME="$BASEDIR"/rlwrap
 
 ## History Control
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
 HISTIGNORE="?:??"
+
+
+## Add hostname to PS1 if I am in SSH session
+if [[ -z "$SSH_TTY" ]]; then
+    PS1="\W $ "
+else
+    PS1="[\u@\h \W]\$ "
+fi
 
 
 ## Aliases
@@ -40,6 +43,10 @@ alias fnls='find . |less -FRX'
 alias gd='git diff'
 alias ga='git add'
 alias gst='git status -sb'
+
+## rlwrap aliases
+alias sbcl='rlwrap sbcl'
+alias sml='rlwrap sml'
 
 ## Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
@@ -89,18 +96,13 @@ virtenv() {
 }
 
 
-## Modules
-SELF=$(test -L "$BASH_SOURCE" && readlink -n "$BASH_SOURCE" || echo "$BASH_SOURCE")
-BASEDIR=$(dirname "$BASH_SOURCE")"/"$(dirname $SELF)
-
 # load machine specific files in bash/
 for file in "$BASEDIR"/bash/local/*; do
     source $file
 done
 
-command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
-
-export RLWRAP_HOME="$BASEDIR"/rlwrap
 
 ## Bash submodules
 source "$BASEDIR"/bash/z/z.sh
+
+command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
