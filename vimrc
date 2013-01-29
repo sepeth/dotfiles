@@ -161,14 +161,15 @@ if has("autocmd")
   " General programming autocmds {{{
   augroup programming_au
     autocmd!
-    autocmd FileType ruby,vim,jade,stylus,javascript,html setlocal ts=2 sts=2 sw=2
-    autocmd FileType html setlocal nowrap
+    autocmd FileType ruby,vim,jade,stylus,javascript,html setl ts=2 sts=2 sw=2
+    autocmd FileType html setl nowrap
     autocmd FileType snippet,snippets setlocal noexpandtab
-    autocmd BufEnter *.rss,*.atom,*.odrl setfiletype xml
-    autocmd BufEnter *.md setfiletype markdown
-    autocmd BufEnter *.arc setfiletype arc
-    autocmd BufEnter *.go setlocal noet ts=4 sts=4 sw=4
-    autocmd BufEnter volofile setfiletype javascript
+    autocmd BufEnter *.rss,*.atom,*.odrl setf xml
+    autocmd BufEnter *.md setf markdown
+    autocmd BufEnter *.arc setf arc
+    autocmd BufEnter *.go setl noet ts=4 sts=4 sw=4
+    autocmd BufEnter *.sml setl et ts=4 sts=4 sw=4 commentstring=\(*\ %s\ *\)
+    autocmd BufEnter volofile setf javascript
     autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css :call <SID>StripTrailingSpaces()
     " Jump to last cursor position
     autocmd BufReadPost *
@@ -189,7 +190,7 @@ if has("autocmd")
   " Vimscript file settings {{{
   augroup filetype_vim
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim setl foldmethod=marker
     autocmd BufWritePost .vimrc source $MYVIMRC
   augroup END
   " }}}
