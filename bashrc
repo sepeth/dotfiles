@@ -96,13 +96,12 @@ virtenv() {
 }
 
 
-# load machine specific files in bash/
-for file in "$BASEDIR"/bash/local/*; do
-    source $file
-done
-
-
-## Bash submodules
+## Tools
 source "$BASEDIR"/bash/z/z.sh
-
 command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
+
+
+## Machine specific bashrc
+if [[ -f "$HOME/.bashrc_local" ]]; then
+    source "$HOME/.bashrc_local"
+fi
