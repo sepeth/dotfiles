@@ -77,25 +77,6 @@ wp() {
 }
 
 
-## Virtualenv
-mkvirtenv() {
-  [ "$#" -eq 1 ] &&
-    mkdir -p ~/.virtualenvs/$1 &&
-    virtualenv ~/.virtualenvs/$1
-}
-
-mkvirtenv3() {
-  [ "$#" -eq 1 ] &&
-    mkdir -p ~/.virtualenvs/$1 &&
-    virtualenv -p `which python3` ~/.virtualenvs/$1
-}
-
-virtenv() {
-  [ "$#" -eq 1 ] &&
-    source ~/.virtualenvs/$1/bin/activate
-}
-
-
 ## Tools
 source "$BASEDIR"/bash/z/z.sh
 command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
