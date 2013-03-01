@@ -112,7 +112,7 @@ set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
 set t_Co=16                                       " 16 colors
-set background=light
+set background=dark
 colorscheme solarized
 
 " GUI specific options
