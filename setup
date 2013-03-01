@@ -1,0 +1,34 @@
+#!/bin/sh
+
+FILES="
+    ackrc
+    bashrc
+    gitconfig
+    inputrc
+    jshintrc
+    vim
+    vimrc
+"
+
+BASEDIR=$(pwd)
+BASEDIR=${BASEDIR#"$HOME"/}
+
+safe_link() {
+    in="$BASEDIR/$1"
+    out=".$1"
+    cd
+    # FIX: check if already symlinked to out
+    if [ -f "$out" ]; then
+        if [ ! -f "._$1" ]; then
+            mv "$out" "._$1" 
+        fi 
+    fi
+    ln -s $in $out
+    cd -
+}
+
+git submodule update --init
+
+for f in $FILES; do
+    safe_link "$f"
+done
