@@ -1,4 +1,9 @@
 " Basic Settings {{{
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
+runtime macros/matchit.vim
+
 set nocompatible
 syntax enable
 set encoding=utf-8
@@ -8,10 +13,6 @@ set scrolloff=3
 set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 set display=lastline
-
-call pathogen#infect()
-call pathogen#helptags()
-source $VIMRUNTIME/macros/matchit.vim
 " }}}
 
 " Status Line {{{

@@ -58,3 +58,6 @@
 [submodule "bash/z"]
 	path = bash/z
 	url = git://github.com/rupa/z.git
+[submodule "vim/bundle/pathogen"]
+	path = vim/bundle/pathogen
+	url = git://github.com/tpope/vim-pathogen.git
