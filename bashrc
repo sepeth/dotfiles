@@ -6,6 +6,7 @@ VISUAL=$EDITOR
 export EDITOR VISUAL
 export GPG_TTY=$(tty)
 export CLICOLOR=1
+export LESS="FRSXi"
 export RLWRAP_HOME="$BASEDIR"/rlwrap
 
 ## History Control
@@ -34,10 +35,9 @@ alias mkdir='mkdir -p'
 alias psg='ps aux |grep -i'
 alias sude='sudo -e'
 alias serve='python -m SimpleHTTPServer'
-alias less='less -FRX'
 alias tree='tree -C'
-alias trls='tree -C |less -FRX'
-alias fnls='find . |less -FRX'
+alias trls='tree -C |less'
+alias fnls='find . |less'
 
 ## Git aliases
 alias gd='git diff'

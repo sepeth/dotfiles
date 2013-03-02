@@ -6,7 +6,7 @@
 	pager = yes
 [core]
 	editor = /usr/bin/vim
-	pager = less -FRSX
+	pager = less
 [alias]
 	lo = log --oneline --decorate
 	st = status --short --branch
