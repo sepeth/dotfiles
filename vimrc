@@ -195,6 +195,11 @@ if has("autocmd")
     autocmd BufWritePost .vimrc source $MYVIMRC
   augroup END
   " }}}
+
+  augroup paste
+    autocmd!
+    autocmd InsertLeave * set nopaste
+  augroup END
 endif
 
 " Clojure {{{
