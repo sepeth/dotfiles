@@ -1,10 +1,10 @@
 " Basic Settings {{{
+set nocompatible
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 runtime macros/matchit.vim
 
-set nocompatible
 syntax enable
 set encoding=utf-8
 set showcmd ruler number numberwidth=6
