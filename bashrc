@@ -14,6 +14,7 @@ HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
 HISTIGNORE="?:??"
 
+shopt -s cdspell dirspell
 
 ## Add hostname to PS1 if I am in SSH session
 if [[ -z "$SSH_TTY" ]]; then
