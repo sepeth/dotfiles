@@ -10,7 +10,6 @@ set encoding=utf-8
 set showcmd ruler number numberwidth=6
 set history=1000
 set scrolloff=3
-set wildignore+=*~,*.tar.*,*.tgz
 set listchars=tab:▸\ ,eol:$
 set display=lastline
 " }}}
@@ -107,8 +106,6 @@ set hlsearch incsearch ignorecase smartcase
 " }}}
 
 " User Interface {{{
-set wildignore+=node_modules/*,*.min.js               " Javascript
-set wildignore+=*.pyc,dist/*,build/*,*.egg-info,*.egg " Python
 set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
@@ -124,6 +121,14 @@ set linespace=1
 if has('mouse')
   set mouse=a
 endif
+" }}}
+
+" Wildignore {{{
+set wildignore+=*~,*.sw?
+set wildignore+=*.tar.*,*.tgz
+set wildignore+=.DS_Store
+set wildignore+=node_modules/*,*.min.js               " Javascript
+set wildignore+=*.pyc,dist/*,build/*,*.egg-info,*.egg " Python
 " }}}
 
 " Functions {{{
