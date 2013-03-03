@@ -15,6 +15,7 @@ HISTCONTROL=ignoreboth
 HISTIGNORE="?:??"
 
 shopt -s cdspell dirspell
+shopt -s extglob globstar
 
 ## Add hostname to PS1 if I am in SSH session
 if [[ -z "$SSH_TTY" ]]; then
