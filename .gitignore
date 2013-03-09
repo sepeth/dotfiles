@@ -3,4 +3,5 @@
 \#*#
 local_*
 .netrwhist
+.DS_Store
 rlwrap/*_history
