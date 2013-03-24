@@ -52,12 +52,18 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/VimClojure"]
-	path = vim/bundle/VimClojure
-	url = git://github.com/vim-scripts/VimClojure.git
 [submodule "bash/z"]
 	path = bash/z
 	url = git://github.com/rupa/z.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
+[submodule "vim/bundle/vim-clojure-static"]
+	path = vim/bundle/vim-clojure-static
+	url = git://github.com/guns/vim-clojure-static.git
+[submodule "vim/bundle/fireplace"]
+	path = vim/bundle/fireplace
+	url = git://github.com/tpope/vim-fireplace.git
+[submodule "vim/bundle/vim-classpath"]
+	path = vim/bundle/vim-classpath
+	url = git://github.com/tpope/vim-classpath.git

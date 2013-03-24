@@ -76,6 +76,7 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 inoremap <C-c> <nop>
+inoremap <BS> <nop>
 
 " Window navigation
 noremap <C-h> <C-w>h
@@ -207,15 +208,15 @@ if has("autocmd")
   augroup END
 endif
 
-" Clojure {{{
-let vimclojure#ParenRainbow = 1
-" }}}
-
 " CtrlP {{{
 let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
     \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
     \ 'PrtHistory(-1)':       ['<c-k>'],
     \ 'PrtHistory(1)':        ['<c-j>'],
+    \ }
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v(dist|books|target)$',
     \ }
 " }}}
