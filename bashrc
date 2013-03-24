@@ -51,6 +51,7 @@ alias gst='git status -sb'
 ## rlwrap aliases
 alias sbcl='rlwrap sbcl'
 alias sml='rlwrap sml'
+alias clj='rlwrap clj'
 
 ## Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
@@ -73,6 +74,13 @@ cf() {
 
 md() {
   mkdir -p "$1" && cd "$1"
+}
+
+swp() {
+  local tmp=$(mktemp -u .XXXXX)
+  mv "$1" $tmp
+  mv "$2" "$1"
+  mv $tmp "$2"
 }
 
 # Ask wikipedia
