@@ -5,6 +5,7 @@ FILES="
     bashrc
     gitconfig
     inputrc
+    ipython
     jshintrc
     vim
     vimrc
