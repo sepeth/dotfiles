@@ -8,7 +8,6 @@ FILES="
     jshintrc
     vim
     vimrc
-    pystartup.py
 "
 
 BASEDIR=$(pwd)

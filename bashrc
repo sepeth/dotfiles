@@ -8,7 +8,7 @@ export GPG_TTY=$(tty)
 export CLICOLOR=1
 export LESS="FRSXi"
 export RLWRAP_HOME="$BASEDIR"/rlwrap
-export PYTHONSTARTUP=~/.pystartup.py
+export PYTHONSTARTUP="$BASEDIR"/pystartup.py
 
 ## History Control
 HISTFILESIZE=10000
