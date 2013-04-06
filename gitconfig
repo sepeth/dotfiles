@@ -16,5 +16,6 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	sync = "!f() { echo Syncing $1 with master && git checkout master && git pull && git checkout $1 && git rebase master; }; f"
+	staged = diff --cached
 [push]
 	default = simple
