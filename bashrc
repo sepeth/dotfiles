@@ -20,13 +20,6 @@ shopt -s extglob globstar
 shopt -s cmdhist histappend
 shopt -s no_empty_cmd_completion
 
-## Add hostname to PS1 if I am in SSH session
-if [[ -z "$SSH_TTY" ]]; then
-    PS1="\W $ "
-else
-    PS1="[\u@\h \W]\$ "
-fi
-
 
 ## Aliases
 alias ..='cd ..'
@@ -98,4 +91,15 @@ command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
 ## Machine specific bashrc
 if [[ -f "$HOME/.bashrc_local" ]]; then
     source "$HOME/.bashrc_local"
+fi
+
+GREEN='\e[0;32m'
+RESET='\e[m'
+PROMPT_GIT='$(__git_ps1 ":'${GREEN}'%s'${RESET}'")'
+
+## Add hostname to PS1 if I am in SSH session
+if [[ -z "$SSH_TTY" ]]; then
+    export PS1="\W${PROMPT_GIT} $ "
+else
+    PS1="[\u@\h \W]\$ "
 fi
