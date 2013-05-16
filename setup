@@ -8,6 +8,7 @@ FILES="
     inputrc
     ipython
     jshintrc
+    psqlrc
     vim
     vimrc
 "
