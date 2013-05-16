@@ -27,6 +27,7 @@ alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -la'
 alias lld='ls -ld'
+alias cx='chmod +x'
 alias dfh='df -H'
 alias grep='grep --colour'
 alias mkdir='mkdir -p'
@@ -40,7 +41,7 @@ alias fnls='find . |less'
 ## Git aliases
 alias gd='git diff'
 alias ga='git add'
-alias gst='git status -sb'
+alias gst='git status --short'
 
 ## rlwrap aliases
 alias sbcl='rlwrap sbcl'
@@ -95,11 +96,11 @@ fi
 
 GREEN='\e[0;32m'
 RESET='\e[m'
-PROMPT_GIT='$(__git_ps1 ":'${GREEN}'%s'${RESET}'")'
+PROMPT_GIT='$(__git_ps1 " '${GREEN}'%s'${RESET}'")'
 
 ## Add hostname to PS1 if I am in SSH session
 if [[ -z "$SSH_TTY" ]]; then
-    export PS1="\W${PROMPT_GIT} $ "
+    PS1="\W${PROMPT_GIT} $ "
 else
     PS1="[\u@\h \W]\$ "
 fi
