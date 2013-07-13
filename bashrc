@@ -83,6 +83,23 @@ wp() {
   dig +short txt ${1}.wp.dg.cx
 }
 
+# Activate venv in dir
+vact() {
+    source $1/bin/activate
+}
+
+# FFMPEG
+extract-audio() {
+    local input="$1"
+    local output=${input%.*}.mp3
+    ffmpeg -i $input -vn $output
+}
+
+convert2mp3() {
+    local input="$1"
+    local output=${input%.*}.mp3
+    echo ffmpeg -i $input -ab 320k -map_metadata 0 $output
+}
 
 ## Tools
 source "$BASEDIR"/bash/z/z.sh
@@ -94,13 +111,9 @@ if [[ -f "$HOME/.bashrc_local" ]]; then
     source "$HOME/.bashrc_local"
 fi
 
-GREEN='\e[0;32m'
-RESET='\e[m'
-PROMPT_GIT='$(__git_ps1 " '${GREEN}'%s'${RESET}'")'
-
 ## Add hostname to PS1 if I am in SSH session
 if [[ -z "$SSH_TTY" ]]; then
-    PS1="\W${PROMPT_GIT} $ "
+    PS1="\W $ "
 else
     PS1="[\u@\h \W]\$ "
 fi
