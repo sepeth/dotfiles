@@ -1,5 +1,10 @@
 " Basic Settings {{{
 set nocompatible
+if filereadable('/usr/local/bin/bash')
+  set shell=/usr/local/bin/bash
+else
+  set shell=/bin/bash
+end
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
