@@ -41,7 +41,7 @@ alias fnls='find . |less'
 ## Git aliases
 alias gd='git diff'
 alias ga='git add'
-alias gst='git status --short'
+alias gst='git status --short --branch'
 
 ## rlwrap aliases
 alias sbcl='rlwrap sbcl'
