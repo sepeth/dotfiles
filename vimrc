@@ -17,6 +17,7 @@ set history=1000
 set scrolloff=3
 set listchars=tab:▸\ ,eol:$
 set display=lastline
+set cursorline
 " }}}
 
 " Status Line {{{
@@ -40,7 +41,8 @@ nnoremap <C-l> viwUw
 inoremap <C-l> <Esc>viwUwa
  noremap <leader>ae :Tabularize /=<CR>
  noremap <leader>ac :Tabularize /:<CR>
-nnoremap <leader>db :CtrlPBuffer<CR>
+nnoremap <leader>b  :CtrlPBuffer<CR>
+nnoremap <leader>c  :set cursorcolumn!<CR>
 nnoremap <leader>dd :CtrlPBookmarkDir<CR>
 nnoremap <leader>da :CtrlPBookmarkDirAdd<CR>
 nnoremap <leader>dm :CtrlPMixed<CR>
@@ -49,13 +51,14 @@ nnoremap <leader>dm :CtrlPMixed<CR>
     nmap <leader>ev :vsp %%
     nmap <leader>et :tabe %%
 nnoremap <leader>f :set fullscreen!<CR>
-nnoremap <leader>g :Ack<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>o :only<CR>
+nnoremap <leader>r :CtrlPBufTagAll<CR>
 nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
 nnoremap <leader>v :split $MYVIMRC<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>y :Ag<CR>
 nnoremap <leader>z :match Error /\s\+$/<CR>
 nnoremap <leader>Z :match Error //<CR>
 nnoremap <leader>/ /\v
@@ -173,7 +176,7 @@ if has("autocmd")
   " General programming autocmds {{{
   augroup programming_au
     autocmd!
-    autocmd FileType ruby,vim,jade,stylus,javascript,html setl ts=2 sts=2 sw=2
+    autocmd FileType ruby,vim,jade,stylus setl ts=2 sts=2 sw=2
     autocmd FileType html setl nowrap
     autocmd FileType snippet,snippets setlocal noexpandtab
     autocmd BufEnter *.rss,*.atom,*.odrl setf xml
@@ -188,14 +191,6 @@ if has("autocmd")
       \ if line("'\"") > 1 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
-  augroup END
-  " }}}
-
-  " Vim autocmds  {{{
-  augroup vim_au
-    autocmd!
-    autocmd InsertEnter * set cursorline
-    autocmd InsertLeave * set nocursorline
   augroup END
   " }}}
 
@@ -214,6 +209,7 @@ if has("autocmd")
 endif
 
 " CtrlP {{{
+let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_prompt_mappings = {
     \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
     \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
@@ -224,4 +220,8 @@ let g:ctrlp_prompt_mappings = {
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v(dist|books|target)$',
     \ }
+" }}}
+
+" jedi {{{
+let g:jedi#use_tabs_not_buffers = 0
 " }}}
