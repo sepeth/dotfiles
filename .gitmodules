@@ -79,3 +79,12 @@
 [submodule "vim/bundle/vim-less"]
 	path = vim/bundle/vim-less
 	url = git://github.com/groenewege/vim-less.git
+[submodule "config/fish/bundle/z-fish"]
+	path = config/fish/bundle/z-fish
+	url = git://github.com/sjl/z-fish.git
+[submodule "config/fish/bundle/virtualfish"]
+	path = config/fish/bundle/virtualfish
+	url = git://github.com/adambrenecki/virtualfish.git
+[submodule "vim/bundle/vim-fish"]
+	path = vim/bundle/vim-fish
+	url = git://github.com/dag/vim-fish.git
