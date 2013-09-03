@@ -12,7 +12,7 @@ runtime macros/matchit.vim
 
 syntax enable
 set encoding=utf-8
-set showcmd ruler number numberwidth=6
+set showcmd ruler number relativenumber numberwidth=6
 set history=1000
 set scrolloff=3
 set listchars=tab:▸\ ,eol:$
@@ -118,9 +118,9 @@ set hlsearch incsearch ignorecase smartcase
 set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
-set t_Co=16                                       " 16 colors
+set t_Co=256                                       " 16 colors
 set background=dark
-colorscheme solarized
+colorscheme molokai
 
 " GUI specific options
 set visualbell guioptions-=T guioptions-=L guioptions-=r
@@ -224,4 +224,8 @@ let g:ctrlp_custom_ignore = {
 
 " jedi {{{
 let g:jedi#use_tabs_not_buffers = 0
+" }}}
+
+" syntastic {{{
+let g:syntastic_python_checkers=['pylint', 'flake8']
 " }}}
