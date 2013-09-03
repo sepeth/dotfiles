@@ -88,3 +88,15 @@
 [submodule "vim/bundle/vim-fish"]
 	path = vim/bundle/vim-fish
 	url = git://github.com/dag/vim-fish.git
+[submodule "vim/bundle/funcoo.vim"]
+	path = vim/bundle/funcoo.vim
+	url = git://github.com/rizzatti/funcoo.vim.git
+[submodule "vim/bundle/dash.vim"]
+	path = vim/bundle/dash.vim
+	url = git://github.com/rizzatti/dash.vim.git
+[submodule "vim/bundle/molokai"]
+	path = vim/bundle/molokai
+	url = git://github.com/tomasr/molokai.git
+[submodule "vim/bundle/scriptease"]
+	path = vim/bundle/scriptease
+	url = git://github.com/tpope/vim-scriptease.git
