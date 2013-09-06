@@ -11,7 +11,7 @@ export RLWRAP_HOME="$BASEDIR"/rlwrap
 export PYTHONSTARTUP="$BASEDIR"/pystartup.py
 
 ## History Control
-HISTFILESIZE=10000
+HISTSIZE=10000
 HISTCONTROL=ignoreboth
 HISTIGNORE="?:??"
 
@@ -113,7 +113,7 @@ fi
 
 ## Add hostname to PS1 if I am in SSH session
 if [[ -z "$SSH_TTY" ]]; then
-    PS1="\W $ "
+    PS1="\w $ "
 else
-    PS1="[\u@\h \W]\$ "
+    PS1="[\u@\h \w]\$ "
 fi
