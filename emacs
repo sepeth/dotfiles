@@ -2,6 +2,9 @@
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
+(if window-system
+    (set-frame-size (selected-frame) 100 55))
+
 (setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
 (setq vc-follow-symlinks t)
@@ -16,7 +19,8 @@
 (defvar package-list
   '(rainbow-mode
     monokai-theme
-    slime))
+    slime
+    exec-path-from-shell))
 
 (defun list-uninstalled-packages ()
   (cl-remove-if #'package-installed-p package-list))
@@ -26,6 +30,10 @@
     (package-refresh-contents)
     (mapcar #'package-install uninstalled-packages)))
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 (load-theme 'monokai t)
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+
+(setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-repl slime-banner))
