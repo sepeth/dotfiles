@@ -14,17 +14,15 @@
 
 (defvar package-list
   '(rainbow-mode
-    monokai-theme))
+    monokai-theme
+    slime))
 
-(defun package-list-installed-p ()
-  (cl-loop for p in package-list
-	   when (not (package-installed-p p)) do (cl-return nil)
-	   finally (cl-return t)))
+(defun list-uninstalled-packages ()
+  (cl-remove-if #'package-installed-p package-list))
 
-(unless (package-list-installed-p)
-  (package-refresh-contents)
-  (dolist (p package-list)
-    (or (package-installed-p p)
-	(package-install p))))
+(let ((uninstalled-packages (list-uninstalled-packages)))
+  (when uninstalled-packages
+    (package-refresh-contents)
+    (mapcar #'package-install uninstalled-packages)))
 
 (load-theme 'monokai t)
