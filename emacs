@@ -4,14 +4,15 @@
 (setq initial-scratch-message nil)
 (setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
+(setq vc-follow-symlinks t)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
-(require 'cl-lib)
 (require 'package)
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+(require 'cl-lib)
 (defvar package-list
   '(rainbow-mode
     monokai-theme
@@ -26,3 +27,5 @@
     (mapcar #'package-install uninstalled-packages)))
 
 (load-theme 'monokai t)
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(slime-setup '(slime-repl slime-banner))
