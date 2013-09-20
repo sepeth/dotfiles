@@ -1,14 +1,20 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+
+(unless window-system
+  (menu-bar-mode -1))
+
+(when (memq window-system '(mac ns))
+  (set-frame-font "Monaco")
+  (set-frame-size (selected-frame) 100 55))
+
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
-(setq ring-bell-function 'ignore)
-(if window-system
-    (set-frame-size (selected-frame) 100 55))
 
 (setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
 (setq vc-follow-symlinks t)
+(setq ring-bell-function 'ignore)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 (require 'package)
@@ -19,9 +25,10 @@
 (require 'cl-lib)
 (defvar package-list
   '(rainbow-mode
-    monokai-theme
+    molokai-theme
     slime
-    exec-path-from-shell))
+    exec-path-from-shell
+    evil))
 
 (defun list-uninstalled-packages ()
   (cl-remove-if #'package-installed-p package-list))
@@ -31,10 +38,10 @@
     (package-refresh-contents)
     (mapcar #'package-install uninstalled-packages)))
 
+(load-theme 'molokai t)
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
-(load-theme 'monokai t)
 
 (setq inferior-lisp-program "sbcl")
 (slime-setup '(slime-repl slime-banner))
