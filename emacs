@@ -2,6 +2,7 @@
 (scroll-bar-mode -1)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
+(setq ring-bell-function 'ignore)
 (if window-system
     (set-frame-size (selected-frame) 100 55))
 
