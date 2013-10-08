@@ -1,3 +1,4 @@
+;; -*- mode: lisp -*-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
@@ -15,6 +16,11 @@
 (setq mac-command-modifier 'meta)
 (setq vc-follow-symlinks t)
 (setq ring-bell-function 'ignore)
+
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "C-.") 'kill-region)
+(global-set-key (kbd "C-w") 'backward-kill-word)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 
 (require 'package)
@@ -28,7 +34,8 @@
     molokai-theme
     slime
     exec-path-from-shell
-    evil))
+    evil
+    helm))
 
 (defun list-uninstalled-packages ()
   (cl-remove-if #'package-installed-p package-list))
@@ -44,4 +51,4 @@
   (exec-path-from-shell-initialize))
 
 (setq inferior-lisp-program "sbcl")
-(slime-setup '(slime-repl slime-banner))
+(slime-setup '(slime-repl slime-banner slime-editing-commands))
