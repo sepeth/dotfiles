@@ -1,4 +1,4 @@
-;; -*- mode: lisp -*-
+;; -*- mode: emacs-lisp -*-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
@@ -9,19 +9,21 @@
   (set-frame-font "Monaco")
   (set-frame-size (selected-frame) 100 55))
 
-(setq inhibit-startup-message t)
-(setq initial-scratch-message nil)
-
-(setq mac-option-modifier nil)
-(setq mac-command-modifier 'meta)
-(setq vc-follow-symlinks t)
-(setq ring-bell-function 'ignore)
+(setq inhibit-startup-message t
+      initial-scratch-message nil
+      mac-option-modifier nil
+      mac-command-modifier 'meta
+      vc-follow-symlinks t
+      ring-bell-function 'ignore)
 
 (global-set-key (kbd "C-?") 'help-command)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-.") 'kill-region)
 (global-set-key (kbd "C-w") 'backward-kill-word)
+(global-set-key (kbd "C-S-f") 'scroll-up-command)
+(global-set-key (kbd "C-S-b") 'scroll-down-command)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 (require 'package)
 (add-to-list 'package-archives
@@ -35,7 +37,8 @@
     slime
     exec-path-from-shell
     evil
-    helm))
+    helm
+    key-chord))
 
 (defun list-uninstalled-packages ()
   (cl-remove-if #'package-installed-p package-list))
@@ -50,5 +53,22 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(setq inferior-lisp-program "sbcl")
-(slime-setup '(slime-repl slime-banner slime-editing-commands))
+(evil-mode)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-mode 1)
+
+(setq inferior-lisp-program "sbcl"
+      common-lisp-hyperspec-root (expand-file-name "~/Documents/HyperSpec/"))
+
+(setq slime-lisp-implementations
+      '((sbcl    ("sbcl"))
+	(ccl     ("ccl"))
+	(allegro ("alisp"))
+	(clisp   ("clisp"))))
+
+(slime-setup
+ '(slime-repl
+   slime-banner
+   slime-editing-commands
+   slime-fuzzy
+   slime-presentations))
