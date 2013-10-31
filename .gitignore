@@ -1,6 +1,7 @@
 *~
 .*.swp
 \#*#
+*.pyc
 local_*
 .netrwhist
 .DS_Store
