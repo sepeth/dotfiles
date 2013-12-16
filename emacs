@@ -39,6 +39,7 @@
     slime
     exec-path-from-shell
     evil
+    evil-leader
     jedi
     helm
     key-chord))
@@ -56,11 +57,16 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+(global-evil-leader-mode)
 (evil-mode)
 (setq key-chord-two-keys-delay 0.5)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-normal-state-map ",," 'evil-buffer)
 (key-chord-mode 1)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "w" 'save-buffer
+  "o" 'delete-other-windows)
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
