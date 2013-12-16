@@ -1,6 +1,8 @@
 ;; -*- mode: emacs-lisp -*-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(column-number-mode)
+(show-paren-mode)
 
 (unless window-system
   (menu-bar-mode -1))
@@ -37,6 +39,7 @@
     slime
     exec-path-from-shell
     evil
+    jedi
     helm
     key-chord))
 
@@ -54,8 +57,17 @@
   (exec-path-from-shell-initialize))
 
 (evil-mode)
+(setq key-chord-two-keys-delay 0.5)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-normal-state-map ",," 'evil-buffer)
 (key-chord-mode 1)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
+(require 'dired-x)
+(add-to-list 'dired-omit-extensions ".pyc")
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 (setq inferior-lisp-program "sbcl"
       common-lisp-hyperspec-root (expand-file-name "~/Documents/HyperSpec/"))
