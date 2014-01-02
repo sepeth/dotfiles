@@ -4,7 +4,7 @@ FILES="
     ackrc
     agignore
     bashrc
-    config/fish
+    ctags
     gitconfig
     inputrc
     ipython
