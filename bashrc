@@ -37,6 +37,8 @@ alias serve='python -m SimpleHTTPServer'
 alias tree='tree -C'
 alias trls='tree -C |less'
 alias fnls='find . |less'
+alias pyag='ag --python'
+alias jsag='ag --js'
 
 ## Git aliases
 alias gd='git diff'
