@@ -18,12 +18,9 @@
       vc-follow-symlinks t
       ring-bell-function 'ignore)
 
-(global-set-key (kbd "C-?") 'help-command)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-.") 'kill-region)
 (global-set-key (kbd "C-w") 'backward-kill-word)
-(global-set-key (kbd "C-S-f") 'scroll-up-command)
-(global-set-key (kbd "C-S-b") 'scroll-down-command)
 (global-set-key (kbd "C-x C-m") 'execute-extended-command)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
@@ -40,9 +37,10 @@
     exec-path-from-shell
     evil
     evil-leader
-    jedi
     helm
-    key-chord))
+    key-chord
+    flycheck
+    jedi))
 
 (defun list-uninstalled-packages ()
   (cl-remove-if #'package-installed-p package-list))
