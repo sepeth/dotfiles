@@ -27,7 +27,7 @@ set statusline+=%f\      " Path to the file
 set statusline+=%m\      " Modified flag 
 set statusline+=%r\      " Read-Only flag
 set statusline+=%=       " Switch to the right side
-set statusline+=%c:%l\   " Current col and line
+set statusline+=%l:%c\   " Current col and line
 set statusline+=[%L]\    " Total lines
 set statusline+=%B\      " Hex-value of a current char
 set statusline+=%y       " File type
@@ -37,8 +37,6 @@ set statusline+=%y       " File type
 let mapleader = ","
 let maplocalleader = '\'
 cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
-nnoremap <C-l> viwUw
-inoremap <C-l> <Esc>viwUwa
  noremap <leader>ae :Tabularize /=<CR>
  noremap <leader>ac :Tabularize /:<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
@@ -49,7 +47,7 @@ nnoremap <leader>dm :CtrlPMixed<CR>
     nmap <leader>ew :e %%
     nmap <leader>es :sp %%
     nmap <leader>ev :vsp %%
-    nmap <leader>et :tabe %%
+"   nmap <leader>et :tabe %%
 nnoremap <leader>f :set fullscreen!<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>l :set list!<CR>
@@ -83,7 +81,7 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-inoremap <C-c> <nop>
+"inoremap <C-c> <nop>
 inoremap <BS> <nop>
 
 " Window navigation
@@ -208,6 +206,13 @@ if has("autocmd")
   augroup END
 endif
 
+" Netrw {{{
+let g:netrw_banner = 0
+let g:netrw_keepdir = 0
+let g:netrw_liststyle = 3
+let g:netrw_sort_options = 'i'
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_prompt_mappings = {
@@ -218,7 +223,7 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v(dist|books|target)$',
+    \ 'dir': '\v^(dist|target)$',
     \ }
 " }}}
 
@@ -227,5 +232,6 @@ let g:jedi#use_tabs_not_buffers = 0
 " }}}
 
 " syntastic {{{
-let g:syntastic_python_checkers=['pylint', 'flake8']
+let g:syntastic_python_checkers=['pylama', 'pylint', 'flake8']
+let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
 " }}}
