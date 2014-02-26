@@ -11,7 +11,8 @@ function FindProxyForURL(url, host) {
     '*.safaribooksonline.com': 'yildizlib',
     '*.acm.org': 'yildizlib',
     'journals.cambridge.org': 'yildizlib',
-    'distro.cc.yildiz.edu.tr': 'yildizlib'
+    'distro.cc.yildiz.edu.tr': 'yildizlib',
+    '*.ebrary.com': 'yildizlib'
   };
 
   if (isPlainHostName(host)) {
