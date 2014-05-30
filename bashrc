@@ -19,6 +19,8 @@ shopt -s autocd cdspell dirspell
 shopt -s extglob globstar
 shopt -s cmdhist histappend
 shopt -s no_empty_cmd_completion
+shopt -s huponexit checkjobs
+shopt -s direxpand
 
 
 ## Aliases
@@ -37,8 +39,11 @@ alias serve='python -m SimpleHTTPServer'
 alias tree='tree -C'
 alias trls='tree -C |less'
 alias fnls='find . |less'
+alias ag='ag --pager less'
 alias pyag='ag --python'
 alias jsag='ag --js'
+alias k2='kill -2'
+alias hcat='pygmentize -g'
 
 ## Git aliases
 alias gd='git diff'
