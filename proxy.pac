@@ -12,7 +12,8 @@ function FindProxyForURL(url, host) {
     '*.acm.org': 'yildizlib',
     'journals.cambridge.org': 'yildizlib',
     'distro.cc.yildiz.edu.tr': 'yildizlib',
-    '*.ebrary.com': 'yildizlib'
+    '*.ebrary.com': 'yildizlib',
+    'link.springer.com': 'yildizlib'
   };
 
   if (isPlainHostName(host)) {
