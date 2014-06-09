@@ -5,9 +5,25 @@ if filereadable('/usr/local/bin/bash')
 else
   set shell=/bin/bash
 end
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'sjl/gundo.vim'
+Plugin 'tomasr/molokai'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'mattn/emmet-vim'
+call vundle#end()
+filetype plugin indent on
+
 runtime macros/matchit.vim
 
 syntax enable
@@ -82,7 +98,7 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 "inoremap <C-c> <nop>
-inoremap <BS> <nop>
+"inoremap <BS> <nop>
 
 " Window navigation
 noremap <C-h> <C-w>h
@@ -168,43 +184,39 @@ let g:snipMate.scope_aliases.dustjs = 'dustjs,html'
 let g:snipMate.scope_aliases.htmldjango = 'django,html'
 " }}}
 
-if has("autocmd")
-  filetype plugin indent on
+" General programming autocmds {{{
+augroup programming_au
+  autocmd!
+  autocmd FileType ruby,vim,jade,stylus,javascript,html setl ts=2 sts=2 sw=2
+  autocmd FileType html setl nowrap
+  autocmd FileType snippet,snippets setlocal noexpandtab
+  autocmd BufEnter *.rss,*.atom,*.odrl setf xml
+  autocmd BufEnter *.md setf markdown
+  autocmd BufEnter *.arc setf arc
+  autocmd BufEnter *.go setl noet ts=4 sts=4 sw=4
+  autocmd BufEnter *.sml setl et ts=4 sts=4 sw=4 commentstring=\(*\ %s\ *\)
+  autocmd BufEnter volofile setf javascript
+  autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css :call <SID>StripTrailingSpaces()
+  " Jump to last cursor position
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+augroup END
+" }}}
 
-  " General programming autocmds {{{
-  augroup programming_au
-    autocmd!
-    autocmd FileType ruby,vim,jade,stylus setl ts=2 sts=2 sw=2
-    autocmd FileType html setl nowrap
-    autocmd FileType snippet,snippets setlocal noexpandtab
-    autocmd BufEnter *.rss,*.atom,*.odrl setf xml
-    autocmd BufEnter *.md setf markdown
-    autocmd BufEnter *.arc setf arc
-    autocmd BufEnter *.go setl noet ts=4 sts=4 sw=4
-    autocmd BufEnter *.sml setl et ts=4 sts=4 sw=4 commentstring=\(*\ %s\ *\)
-    autocmd BufEnter volofile setf javascript
-    autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css :call <SID>StripTrailingSpaces()
-    " Jump to last cursor position
-    autocmd BufReadPost *
-      \ if line("'\"") > 1 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-  augroup END
-  " }}}
+" Vimscript file settings {{{
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setl foldmethod=marker
+  autocmd BufWritePost .vimrc source $MYVIMRC
+augroup END
+" }}}
 
-  " Vimscript file settings {{{
-  augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setl foldmethod=marker
-    autocmd BufWritePost .vimrc source $MYVIMRC
-  augroup END
-  " }}}
-
-  augroup paste
-    autocmd!
-    autocmd InsertLeave * set nopaste
-  augroup END
-endif
+augroup paste
+  autocmd!
+  autocmd InsertLeave * set nopaste
+augroup END
 
 " Netrw {{{
 let g:netrw_banner = 0
@@ -231,7 +243,13 @@ let g:ctrlp_custom_ignore = {
 let g:jedi#use_tabs_not_buffers = 0
 " }}}
 
+" emmet {{{
+"let g:user_emmet_leader_key='<C-Z>'
+" }}}
+
 " syntastic {{{
 let g:syntastic_python_checkers=['pylama', 'pylint', 'flake8']
 let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
+let g:syntastic_cpp_checkers=['gcc']
+let g:syntastic_cpp_config_file='.syntastic_config'
 " }}}
