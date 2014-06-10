@@ -1,4 +1,4 @@
-" Basic Settings {{{
+" Prelude {{{
 set nocompatible
 if filereadable('/usr/local/bin/bash')
   set shell=/usr/local/bin/bash
@@ -7,7 +7,9 @@ else
 end
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+" }}}
 
+" Plugins {{{
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-repeat'
@@ -20,12 +22,16 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tomasr/molokai'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim'
 call vundle#end()
+" }}}
+
+" Basic Settings {{{
 filetype plugin indent on
-
 runtime macros/matchit.vim
-
 syntax enable
 set encoding=utf-8
 set showcmd ruler number relativenumber numberwidth=6
@@ -252,4 +258,10 @@ let g:syntastic_python_checkers=['pylama', 'pylint', 'flake8']
 let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
 let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_cpp_config_file='.syntastic_config'
+" }}}
+
+" YouCompleteMe, UltiSnips, Supertab {{{
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-Tab>'
 " }}}
