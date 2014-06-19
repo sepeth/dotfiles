@@ -1,0 +1,7 @@
+set scrolloff=3
+set hlsearch ignorecase smartcase
+
+inoremap jk <esc>
+inoremap <C-h> <bs>
+inoremap <C-u> <C-g>u<C-u>
+inoremap <C-w> <C-g>u<C-w>
