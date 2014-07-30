@@ -26,6 +26,9 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'groenewege/vim-less'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 " }}}
 
