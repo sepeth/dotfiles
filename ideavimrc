@@ -2,6 +2,7 @@ set scrolloff=3
 set visualbell
 set hlsearch ignorecase smartcase
 
+nnoremap ,h :noh<CR>
 inoremap jk <esc>
 inoremap <C-h> <bs>
 inoremap <C-u> <C-g>u<C-u>
