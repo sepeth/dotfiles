@@ -5,7 +5,6 @@
 	ui = yes
 	pager = yes
 [core]
-	editor = /usr/bin/vim
 	pager = less
 [alias]
 	lo = log --oneline --decorate
