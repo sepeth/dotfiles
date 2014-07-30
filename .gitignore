@@ -8,3 +8,4 @@ local_*
 rlwrap/*_history
 config/fish/fish_history
 config/fish/fishd.*
+/vim/bundle/
