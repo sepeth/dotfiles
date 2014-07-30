@@ -204,6 +204,13 @@ augroup programming_au
 augroup END
 " }}}
 
+" Python autocmds {{{
+augroup python_au
+  autocmd!
+  autocmd FileType python nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+augroup END
+" }}}
+
 " Vimscript file settings {{{
 augroup filetype_vim
   autocmd!
