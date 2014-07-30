@@ -183,13 +183,6 @@ function! Stab()
 endfunction
 " }}}
 
-" snipMate {{{
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases.dustjs = 'dustjs,html'
-let g:snipMate.scope_aliases.htmldjango = 'django,html'
-" }}}
-
 " General programming autocmds {{{
 augroup programming_au
   autocmd!
