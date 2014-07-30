@@ -227,15 +227,20 @@ let g:netrw_sort_options = 'i'
 " CtrlP {{{
 let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_prompt_mappings = {
-    \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
-    \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
-    \ 'PrtHistory(-1)':       ['<c-k>'],
-    \ 'PrtHistory(1)':        ['<c-j>'],
-    \ }
+  \ 'PrtSelectMove("j")':   ['<c-n>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>', '<up>'],
+  \ 'PrtHistory(-1)':       ['<c-k>'],
+  \ 'PrtHistory(1)':        ['<c-j>'],
+  \ }
 
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v^(dist|target)$',
-    \ }
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+
 " }}}
 
 " jedi {{{
