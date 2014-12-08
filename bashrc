@@ -20,7 +20,6 @@ shopt -s extglob globstar
 shopt -s cmdhist histappend
 shopt -s no_empty_cmd_completion
 shopt -s huponexit checkjobs
-shopt -s direxpand
 
 
 ## Aliases
