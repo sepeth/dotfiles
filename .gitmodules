@@ -12,4 +12,4 @@
 	url = git://github.com/gmarik/Vundle.vim
 [submodule "bash/v"]
 	path = bash/v
-	url = git://github.com/rupa/v.git
+	url = git://github.com/rupa/v
