@@ -37,3 +37,5 @@ git submodule update --init
 for f in $FILES; do
     safe_link "$f"
 done
+
+vim +PluginInstall +qall
