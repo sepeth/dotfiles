@@ -47,7 +47,7 @@ alias hcat='pygmentize -g'
 ## Git aliases
 alias gd='git diff'
 alias ga='git add'
-alias gst='git status --short --branch'
+alias gst='git status --short'
 
 ## rlwrap aliases
 alias sbcl='rlwrap sbcl'
