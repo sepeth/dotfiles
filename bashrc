@@ -44,6 +44,7 @@ alias pyag='ag --python'
 alias jsag='ag --js'
 alias k2='kill -2'
 alias hcat='pygmentize -g'
+alias bc='bc -q'
 
 ## Git aliases
 alias gd='git diff'
@@ -99,13 +100,13 @@ vact() {
 extract-audio() {
     local input="$1"
     local output=${input%.*}.mp3
-    ffmpeg -i $input -vn $output
+    ffmpeg -i "$input" -c:a copy -vn "$output"
 }
 
 convert2mp3() {
     local input="$1"
     local output=${input%.*}.mp3
-    echo ffmpeg -i $input -ab 320k -map_metadata 0 $output
+    ffmpeg -i "$input" -ab 320k -map_metadata 0 "$output"
 }
 
 ## Tools
