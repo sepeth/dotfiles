@@ -13,6 +13,8 @@ function FindProxyForURL(url, host) {
     'journals.cambridge.org': 'yildizlib',
     'distro.cc.yildiz.edu.tr': 'yildizlib',
     '*.ebrary.com': 'yildizlib',
+    'www.scientificamerican.com': 'yildizlib',
+    'onlinelibrary.wiley.com': 'yildizlib',
     'link.springer.com': 'yildizlib'
   };
 
