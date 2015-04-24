@@ -29,6 +29,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'scrooloose/syntastic'
+Plugin 'rking/ag.vim'
+Plugin 'tmhedberg/SimpylFold'
 call vundle#end()
 " }}}
 
