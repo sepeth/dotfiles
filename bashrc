@@ -45,6 +45,7 @@ alias jsag='ag --js'
 alias k2='kill -2'
 alias hcat='pygmentize -g'
 alias bc='bc -q'
+command -v colordiff >/dev/null && alias diff='colordiff -u'
 
 ## Git aliases
 alias gd='git diff'
@@ -70,6 +71,8 @@ alias mdump='alias|grep -e "alias g[0-9]"|grep -v "alias m" > ~/.bookmarks'
 alias lma='alias | grep -e "alias g[0-9]"|grep -v "alias m"|sed "s/alias //"'
 touch ~/.bookmarks
 source ~/.bookmarks
+
+alias fuck='$(thefuck $(fc -ln -1))'
 
 cf() {
   cd *$1*/
