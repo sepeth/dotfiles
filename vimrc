@@ -37,6 +37,7 @@ call vundle#end()
 " Basic Settings {{{
 filetype plugin indent on
 runtime macros/matchit.vim
+runtime ftplugin/man.vim
 syntax enable
 set encoding=utf-8
 set showcmd ruler number relativenumber numberwidth=6
@@ -100,6 +101,9 @@ vmap <C-down> ]egv
 
 " Visually select last edited/pasted text
 nnoremap gV `[v`]
+
+" Use ftplugin/man.vim to view man pages
+nnoremap K :Man <cword><CR>
 
 " make it harder to do bad habits
 inoremap jk <esc>
