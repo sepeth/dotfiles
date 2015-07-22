@@ -11,6 +11,7 @@
 	st = status --short --branch
 	ci = commit
 	br = branch
+	lb = for-each-ref refs/heads --count=10 --format='%(refname:short)' --sort=-committerdate
 	co = checkout
 	unstage = reset HEAD --
 	last = log -1 HEAD
