@@ -5,6 +5,7 @@ FILES="
     agignore
     bashrc
     ctags
+    gdbinit
     gitconfig
     inputrc
     ipython
