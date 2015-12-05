@@ -22,21 +22,28 @@ BASEDIR=${BASEDIR#"$HOME"/}
 safe_link() {
     in="$BASEDIR/$1"
     out=".$1"
-    cd
-    # FIX: check if already symlinked to out
-    if [ -f "$out" ]; then
+    cd ~
+    if [ -h "$out" ]; then
+        echo "Already symlinked $out"
+        cd $OLDPWD
+        return
+    elif [ -f "$out" ]; then
         if [ ! -f "._$1" ]; then
+            echo "There's existing $out, moving to ._$1"
             mv "$out" "._$1" 
+        else
+            echo "There's already ._$1, can't create backup, skipping..."
         fi 
     fi
     ln -s $in $out
-    cd -
+    echo "Symlinked $out"
+    cd $OLDPWD
 }
-
-git submodule update --init
 
 for f in $FILES; do
     safe_link "$f"
 done
+
+git submodule update --init
 
 vim +PluginInstall +qall
