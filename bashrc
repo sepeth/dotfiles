@@ -44,7 +44,8 @@ alias pyag='ag --python'
 alias jsag='ag --js'
 alias k2='kill -2'
 alias hcat='pygmentize -g'
-alias bc='bc -q'
+alias bc='bc -ql'
+alias gdb='gdb -q'
 command -v colordiff >/dev/null && alias diff='colordiff -u'
 
 ## Git aliases
@@ -73,6 +74,7 @@ touch ~/.bookmarks
 source ~/.bookmarks
 
 alias fuck='$(thefuck $(fc -ln -1))'
+alias sqlite3='sqlite3 -column -header'
 
 cf() {
   cd *$1*/
