@@ -197,16 +197,17 @@ endfunction
 " General programming autocmds {{{
 augroup programming_au
   autocmd!
-  autocmd FileType ruby,vim,jade,stylus,javascript,html setl ts=2 sts=2 sw=2
+  autocmd FileType ruby,vim,jade,stylus,html setl ts=2 sts=2 sw=2
   autocmd FileType html setl nowrap
   autocmd FileType snippet,snippets setlocal noexpandtab
   autocmd BufEnter *.rss,*.atom,*.odrl setf xml
   autocmd BufEnter *.md setf markdown
   autocmd BufEnter *.arc setf arc
   autocmd BufEnter *.go setl noet ts=4 sts=4 sw=4
+  autocmd BufEnter *.ml setl et ts=2 sts=2 sw=2
   autocmd BufEnter *.sml setl et ts=4 sts=4 sw=4 commentstring=\(*\ %s\ *\)
   autocmd BufEnter volofile setf javascript
-  autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css :call <SID>StripTrailingSpaces()
+  autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css,*.pyx,*.cpp :call <SID>StripTrailingSpaces()
   " Jump to last cursor position
   autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -225,7 +226,7 @@ augroup END
 " Vimscript file settings {{{
 augroup filetype_vim
   autocmd!
-  autocmd FileType vim setl foldmethod=marker
+  autocmd FileType vim setl foldmethod=marker ts=2 sts=2 sw=2
   autocmd BufWritePost .vimrc source $MYVIMRC
 augroup END
 " }}}
