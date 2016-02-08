@@ -20,7 +20,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomasr/molokai'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -31,6 +31,8 @@ Plugin 'groenewege/vim-less'
 Plugin 'scrooloose/syntastic'
 Plugin 'rking/ag.vim'
 Plugin 'tmhedberg/SimpylFold'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'rust-lang/rust.vim'
 call vundle#end()
 " }}}
 
