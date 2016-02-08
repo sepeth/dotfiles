@@ -282,3 +282,10 @@ let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-Tab>'
 " }}}
+
+
+" Cscope {{{
+if has('cscope')
+  set cscopetag
+endif
+" }}}
