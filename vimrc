@@ -132,6 +132,9 @@ noremap <D-j> gj
 noremap <D-k> gk
 noremap <D-$> g$
 noremap <D-7> g0
+
+" Search visually selected text
+vnoremap // y/<C-R>"<CR>
 " }}}
 
 " Abbrevs {{{
