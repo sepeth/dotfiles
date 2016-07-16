@@ -83,12 +83,13 @@ nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>r :CtrlPBufTagAll<CR>
-nnoremap <leader>s :call <SID>StripTrailingSpaces()<CR>
+nnoremap <leader>ss :call <SID>StripTrailingSpaces()<CR>
+nnoremap <leader>sz :match Error /\s\+$/<CR>
+nnoremap <leader>sZ :match Error //<CR>
+nnoremap <leader>u :YcmCompleter GoToReferences<CR>
 nnoremap <leader>v :split $MYVIMRC<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>y :Ag<CR>
-nnoremap <leader>z :match Error /\s\+$/<CR>
-nnoremap <leader>Z :match Error //<CR>
 nnoremap <leader>/ /\v
 nnoremap <leader><leader> <C-^>
 let g:ctrlp_map = '<leader>t'
