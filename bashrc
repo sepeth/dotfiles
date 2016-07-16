@@ -57,6 +57,7 @@ alias gst='git status --short --branch'
 alias sbcl='rlwrap sbcl'
 alias sml='rlwrap sml'
 alias clj='rlwrap clj'
+alias ocaml='rlwrap ocaml'
 
 ## Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
