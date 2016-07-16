@@ -1,12 +1,6 @@
 [submodule "bash/z"]
 	path = bash/z
 	url = git://github.com/rupa/z.git
-[submodule "config/fish/bundle/z-fish"]
-	path = config/fish/bundle/z-fish
-	url = git://github.com/sjl/z-fish.git
-[submodule "config/fish/bundle/virtualfish"]
-	path = config/fish/bundle/virtualfish
-	url = git://github.com/adambrenecki/virtualfish.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
 	url = git://github.com/gmarik/Vundle.vim
