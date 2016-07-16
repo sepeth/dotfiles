@@ -207,8 +207,8 @@ augroup programming_au
   autocmd BufEnter *.md setf markdown
   autocmd BufEnter *.arc setf arc
   autocmd BufEnter *.go setl noet ts=4 sts=4 sw=4
-  autocmd BufEnter *.ml setl et ts=2 sts=2 sw=2
   autocmd BufEnter *.sml setl et ts=4 sts=4 sw=4 commentstring=\(*\ %s\ *\)
+  autocmd BufEnter *.ml setl et ts=2 sts=2 sw=2
   autocmd BufEnter volofile setf javascript
   autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css,*.pyx,*.cpp :call <SID>StripTrailingSpaces()
   " Jump to last cursor position
@@ -290,5 +290,13 @@ let g:SuperTabDefaultCompletionType = '<C-Tab>'
 " Cscope {{{
 if has('cscope')
   set cscopetag
+endif
+" }}}
+
+" OCaml {{{
+if executable('opam') && has('python')
+  let s:opamshare = substitute(system('opam config var share'), '\n$', '', '''')
+  execute "set rtp+=".s:opamshare."/merlin/vim"
+  execute "set rtp+=".s:opamshare."/ocp-indent/vim"
 endif
 " }}}
