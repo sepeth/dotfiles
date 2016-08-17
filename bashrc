@@ -116,6 +116,11 @@ convert2mp3() {
     ffmpeg -i "$input" -ab 320k -map_metadata 0 "$output"
 }
 
+rm-bom() {
+    local input="$1"
+    tail -c +4 "$input" | sponge "$input"
+}
+
 ## Tools
 source "$BASEDIR"/bash/z/z.sh
 command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
