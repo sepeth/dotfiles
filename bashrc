@@ -93,11 +93,6 @@ swp() {
   mv $tmp "$2"
 }
 
-# Ask wikipedia
-wp() {
-  dig +short txt ${1}.wp.dg.cx
-}
-
 # Activate venv in dir
 vact() {
     source $1/bin/activate
