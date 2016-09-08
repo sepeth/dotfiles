@@ -55,10 +55,12 @@ alias ga='git add'
 alias gst='git status --short --branch'
 
 ## rlwrap aliases
-alias sbcl='rlwrap sbcl'
-alias sml='rlwrap sml'
-alias clj='rlwrap clj'
-alias ocaml='rlwrap ocaml'
+if command -v rlwrap >/dev/null; then
+    alias sbcl='rlwrap sbcl'
+    alias sml='rlwrap sml'
+    alias clj='rlwrap clj'
+    alias ocaml='rlwrap ocaml'
+fi
 
 ## Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
