@@ -21,10 +21,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomasr/molokai'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
@@ -153,7 +151,7 @@ set hlsearch incsearch ignorecase smartcase
 set wildmode=longest,list
 set wildmenu
 set hidden                                        " Permit hidden buffers
-set t_Co=256                                       " 16 colors
+set t_Co=256                                      " 16 colors
 set background=dark
 colorscheme molokai
 
@@ -265,27 +263,12 @@ let g:ctrlp_user_command = {
 
 " }}}
 
-" jedi {{{
-let g:jedi#use_tabs_not_buffers = 0
-" }}}
-
-" emmet {{{
-"let g:user_emmet_leader_key='<C-Z>'
-" }}}
-
 " syntastic {{{
 let g:syntastic_python_checkers=['pylama', 'pylint', 'flake8']
 let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
 let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_cpp_config_file='.syntastic_config'
 " }}}
-
-" YouCompleteMe, UltiSnips, Supertab {{{
-let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-Tab>'
-" }}}
-
 
 " Cscope {{{
 if has('cscope')
@@ -300,3 +283,7 @@ if executable('opam') && has('python')
   execute "set rtp+=".s:opamshare."/ocp-indent/vim"
 endif
 " }}}
+"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
