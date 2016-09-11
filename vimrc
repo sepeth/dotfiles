@@ -267,6 +267,7 @@ let g:ctrlp_user_command = {
 let g:syntastic_python_checkers=['pylama', 'pylint', 'flake8']
 let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
 let g:syntastic_cpp_checkers=['gcc']
+let g:syntastic_ocaml_checkers=['merlin']
 let g:syntastic_cpp_config_file='.syntastic_config'
 " }}}
 
