@@ -77,7 +77,6 @@ alias lma='alias | grep -e "alias g[0-9]"|grep -v "alias m"|sed "s/alias //"'
 touch ~/.bookmarks
 source ~/.bookmarks
 
-alias fuck='$(thefuck $(fc -ln -1))'
 alias sqlite3='sqlite3 -column -header'
 
 cf() {
@@ -121,6 +120,7 @@ rm-bom() {
 ## Tools
 source "$BASEDIR"/bash/z/z.sh
 command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
+command -v thefuck >/dev/null && eval "$(thefuck --alias)"
 
 
 ## Machine specific bashrc
