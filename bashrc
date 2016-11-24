@@ -4,14 +4,13 @@ BASEDIR=$(dirname "$BASH_SOURCE")"/"$(dirname $SELF)
 EDITOR=vim
 VISUAL=$EDITOR
 export EDITOR VISUAL
-export GPG_TTY=$(tty)
 export CLICOLOR=1
 export LESS="FRSXi"
 export RLWRAP_HOME="$BASEDIR"/rlwrap
 export PYTHONSTARTUP="$BASEDIR"/pystartup.py
 
 ## History Control
-HISTSIZE=10000
+HISTSIZE=20000
 HISTCONTROL=ignoreboth
 HISTIGNORE="?:??"
 
@@ -47,20 +46,11 @@ alias hcat='pygmentize -g'
 alias bc='bc -ql'
 alias gdb='gdb -q'
 alias suniq='sort |uniq'
-command -v colordiff >/dev/null && alias diff='colordiff -u'
 
 ## Git aliases
 alias gd='git diff'
 alias ga='git add'
 alias gst='git status --short --branch'
-
-## rlwrap aliases
-if command -v rlwrap >/dev/null; then
-    alias sbcl='rlwrap sbcl'
-    alias sml='rlwrap sml'
-    alias clj='rlwrap clj'
-    alias ocaml='rlwrap ocaml'
-fi
 
 ## Directory bookmarks
 alias m1='alias g1="cd `pwd`"'
@@ -94,12 +84,10 @@ swp() {
   mv $tmp "$2"
 }
 
-# Activate venv in dir
 vact() {
     source $1/bin/activate
 }
 
-# FFMPEG
 extract-audio() {
     local input="$1"
     local output=${input%.*}.mp3
@@ -117,18 +105,27 @@ rm-bom() {
     tail -c +4 "$input" | sponge "$input"
 }
 
-## Tools
+## [Optional] Tools
 source "$BASEDIR"/bash/z/z.sh
 command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
 command -v thefuck >/dev/null && eval "$(thefuck --alias)"
+command -v fortune >/dev/null && fortune
+command -v colordiff >/dev/null && alias diff='colordiff -u'
 
+## rlwrap aliases
+if command -v rlwrap >/dev/null; then
+    alias sbcl='rlwrap sbcl'
+    alias sml='rlwrap sml'
+    alias clj='rlwrap clj'
+    alias ocaml='rlwrap ocaml'
+fi
 
-## Machine specific bashrc
+## Source machine specific bashrc
 if [[ -f "$HOME/.bashrc_local" ]]; then
     source "$HOME/.bashrc_local"
 fi
 
-## Add hostname to PS1 if I am in SSH session
+## Add hostname to PS1 if I am in an SSH session
 if [[ -z "$SSH_TTY" ]]; then
     PS1="\w $ "
 else
