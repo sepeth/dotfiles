@@ -17,5 +17,12 @@
 	last = log -1 HEAD
 	sync = "!f() { echo Syncing $1 with master && git checkout master && git pull && git checkout $1 && git rebase master; }; f"
 	staged = diff --cached
+	please = push --force-with-lease
+	commend = commit --amend --no-edit
+	it = !git init && git commit -m root --allow-empty
+	stsh = stash --keep-index
+	staash = stash --include-untracked
+	staaash = stash --all
+	merc = merge --no-ff
 [push]
 	default = simple
