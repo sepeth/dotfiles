@@ -118,6 +118,7 @@ if command -v rlwrap >/dev/null; then
     alias sml='rlwrap sml'
     alias clj='rlwrap clj'
     alias ocaml='rlwrap ocaml'
+    alias ocamldebug='rlwrap ocamldebug'
 fi
 
 ## Source machine specific bashrc
