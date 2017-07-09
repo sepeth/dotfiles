@@ -31,6 +31,7 @@ Plugin 'rking/ag.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 call vundle#end()
 " }}}
 
@@ -288,3 +289,5 @@ endif
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+silent! source .vimlocal
