@@ -107,10 +107,11 @@ rm-bom() {
 
 ## [Optional] Tools
 source "$BASEDIR"/bash/z/z.sh
-command -v lesspipe.sh >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
-command -v thefuck >/dev/null && eval "$(thefuck --alias)"
-command -v fortune >/dev/null && fortune
-command -v colordiff >/dev/null && alias diff='colordiff -u'
+command -v lesspipe.sh  >/dev/null && eval "$(SHELL=/bin/sh lesspipe.sh)"
+command -v thefuck      >/dev/null && eval "$(thefuck --alias)"
+command -v fortune      >/dev/null && fortune
+command -v colordiff    >/dev/null && alias diff='colordiff -u'
+command -v direnv       >/dev/null && eval "$(direnv hook bash)"
 
 ## rlwrap aliases
 if command -v rlwrap >/dev/null; then
