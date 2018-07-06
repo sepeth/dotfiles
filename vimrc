@@ -32,6 +32,9 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
+Plugin 'racer-rust/vim-racer'
+Plugin 'sevko/vim-nand2tetris-syntax'
+Plugin 'Raimondi/delimitMate'
 call vundle#end()
 " }}}
 
@@ -265,7 +268,7 @@ let g:ctrlp_user_command = {
 " }}}
 
 " syntastic {{{
-let g:syntastic_python_checkers=['pylama', 'pylint', 'flake8']
+let g:syntastic_python_checkers=['pylama', 'flake8']
 let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
 let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_ocaml_checkers=['merlin']
@@ -285,6 +288,17 @@ if executable('opam') && has('python')
   execute "set rtp+=".s:opamshare."/ocp-indent/vim"
 endif
 " }}}
+
+" Rust {{{
+let g:racer_cmd = "~/.cargo/bin"
+augroup filetype_rust
+  au FileType rust nmap gd <Plug>(rust-def)
+  au FileType rust nmap gs <Plug>(rust-def-split)
+  au FileType rust nmap gx <Plug>(rust-def-vertical)
+  au FileType rust nmap <leader>gd <Plug>(rust-doc)
+augroup END
+" }}}
+
 "
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
