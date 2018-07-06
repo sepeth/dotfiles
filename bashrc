@@ -90,7 +90,7 @@ vact() {
 
 extract-audio() {
     local input="$1"
-    local output=${input%.*}.mp3
+    local output="${input%.*}.mp3"
     ffmpeg -i "$input" -c:a copy -vn "$output"
 }
 
