@@ -10,6 +10,7 @@ FILES="
     inputrc
     ipython
     jshintrc
+    lambda-term-inputrc
     psqlrc
     tmux.conf
     vim
