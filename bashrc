@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 ## Set some vars
 SELF=$(test -L "$BASH_SOURCE" && readlink -n "$BASH_SOURCE" || echo "$BASH_SOURCE")
 BASEDIR=$(dirname "$BASH_SOURCE")"/"$(dirname $SELF)
