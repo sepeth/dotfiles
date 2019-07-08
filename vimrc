@@ -112,11 +112,6 @@ nnoremap K :Man <cword><CR>
 
 " make it harder to do bad habits
 inoremap jk <esc>
-inoremap <esc> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 "inoremap <C-c> <nop>
 "inoremap <BS> <nop>
 
