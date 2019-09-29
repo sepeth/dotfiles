@@ -21,8 +21,10 @@ Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomasr/molokai'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'SirVer/ultisnips'
+Bundle 'ervandew/supertab'
 Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'prettier/vim-prettier'
 Plugin 'mattn/emmet-vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
@@ -35,6 +37,10 @@ Plugin 'cespare/vim-toml'
 Plugin 'racer-rust/vim-racer'
 Plugin 'sevko/vim-nand2tetris-syntax'
 Plugin 'Raimondi/delimitMate'
+Plugin 'ElmCast/elm-vim'
+Plugin 'reasonml-editor/vim-reason-plus'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'tyrannicaltoucan/vim-deep-space'
 call vundle#end()
 " }}}
 
@@ -56,7 +62,7 @@ set cursorline
 set laststatus=2
 set statusline=%n\       " Buffer number
 set statusline+=%f\      " Path to the file
-set statusline+=%m\      " Modified flag 
+set statusline+=%m\      " Modified flag
 set statusline+=%r\      " Read-Only flag
 set statusline+=%=       " Switch to the right side
 set statusline+=%l:%c\   " Current col and line
@@ -195,19 +201,23 @@ function! Stab()
 endfunction
 " }}}
 
+let g:prettier#autoformat = 0
+
 " General programming autocmds {{{
 augroup programming_au
   autocmd!
-  autocmd FileType ruby,vim,jade,stylus,html setl ts=2 sts=2 sw=2
+  autocmd FileType javascript,ruby,vim,jade,stylus,html,reason setl ts=2 sts=2 sw=2
   autocmd FileType html setl nowrap
   autocmd FileType snippet,snippets setlocal noexpandtab
   autocmd FileType ocaml setl et ts=2 sts=2 sw=2
+  autocmd BufEnter *.svelte set ft=html
   autocmd BufEnter *.rss,*.atom setf xml
   autocmd BufEnter *.md setf markdown
   autocmd BufEnter *.arc setf arc
   autocmd BufEnter *.go setl noet ts=4 sts=4 sw=4
   autocmd BufEnter *.sml setl et ts=4 sts=4 sw=4 commentstring=\(*\ %s\ *\)
-  autocmd BufWritePre *.py,*.js,*.rb,*.lisp,*.css,*.pyx,*.cpp,*.ml :call <SID>StripTrailingSpaces()
+  autocmd BufWritePre *.py,*.rb,*.lisp,*.pyx,*.cpp,*.ml :call <SID>StripTrailingSpaces()
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
   " Jump to last cursor position
   autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -264,7 +274,7 @@ let g:ctrlp_user_command = {
 
 " syntastic {{{
 let g:syntastic_python_checkers=['pylama', 'flake8']
-let g:syntastic_javascript_checkers=['jsxhint', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_ocaml_checkers=['merlin']
 let g:syntastic_cpp_config_file='.syntastic_config'
@@ -294,9 +304,17 @@ augroup filetype_rust
 augroup END
 " }}}
 
-"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Snippets and YCM {{{
+" Copied from here: https://stackoverflow.com/a/22253548
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" "}}}
 
 silent! source .vimlocal
