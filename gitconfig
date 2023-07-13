@@ -15,14 +15,20 @@
 	co = checkout
 	unstage = reset HEAD --
 	last = log -1 HEAD
-	sync = "!f() { echo Syncing $1 with master && git checkout master && git pull && git checkout $1 && git rebase master; }; f"
 	staged = diff --cached
 	please = push --force-with-lease
-	commend = commit --amend --no-edit
+	edit = commit --amend
+	amend = commit --amend --no-edit
 	it = !git init && git commit -m root --allow-empty
 	stsh = stash --keep-index
 	staash = stash --include-untracked
 	staaash = stash --all
 	merc = merge --no-ff
+	sync = !legit sync
+	sw = !legit switch
+	publish = !legit publish
+	unpublish = !legit unpublish
+	undo = !legit undo
+	branches = !legit branches
 [push]
 	default = simple

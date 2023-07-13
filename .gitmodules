@@ -1,9 +1,9 @@
 [submodule "bash/z"]
 	path = bash/z
-	url = git://github.com/rupa/z.git
+	url = https://github.com/rupa/z.git
 [submodule "vim/bundle/Vundle.vim"]
 	path = vim/bundle/Vundle.vim
-	url = git://github.com/gmarik/Vundle.vim
+	url = https://github.com/gmarik/Vundle.vim
 [submodule "bash/v"]
 	path = bash/v
-	url = git://github.com/rupa/v.git
+	url = https://github.com/rupa/v.git

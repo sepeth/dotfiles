@@ -1,7 +1,6 @@
 #!/bin/sh
 
 FILES="
-    ackrc
     agignore
     bashrc
     ctags
@@ -12,6 +11,7 @@ FILES="
     jshintrc
     lambda-term-inputrc
     psqlrc
+    ripgreprc
     tmux.conf
     vim
     vimrc
@@ -30,7 +30,7 @@ safe_link() {
         return
     elif [ -f "$out" ]; then
         if [ ! -f "._$1" ]; then
-            echo "There's existing $out, moving to ._$1"
+            echo "There's an existing $out, moving to ._$1"
             mv "$out" "._$1" 
         else
             echo "There's already ._$1, can't create backup, skipping..."
