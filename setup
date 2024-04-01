@@ -1,37 +1,38 @@
 #!/bin/sh
 
 FILES="
-    agignore
     bashrc
     ctags
     gdbinit
     gitconfig
     inputrc
-    ipython
     jshintrc
     lambda-term-inputrc
     psqlrc
     ripgreprc
     tmux.conf
-    vim
-    vimrc
 "
 
 BASEDIR=$(pwd)
-BASEDIR=${BASEDIR#"$HOME"/}
 
 safe_link() {
     in="$BASEDIR/$1"
-    out=".$1"
+
+    if [ -z "$2" ]; then
+        out=".$1"
+    else
+        out="$2"
+    fi
+
     cd ~
     if [ -h "$out" ]; then
         echo "Already symlinked $out"
         cd $OLDPWD
         return
-    elif [ -f "$out" ]; then
+    elif [ -f "$out" ] || [ -d "$out" ]; then
         if [ ! -f "._$1" ]; then
             echo "There's an existing $out, moving to ._$1"
-            mv "$out" "._$1" 
+            mv "$out" "$(dirname $out)/._$1"
         else
             echo "There's already ._$1, can't create backup, skipping..."
         fi 
@@ -45,6 +46,8 @@ for f in $FILES; do
     safe_link "$f"
 done
 
+safe_link "fish" ".config/fish"
+
 git submodule update --init
 
-vim +PluginInstall +qall
+# vim +PluginInstall +qall
