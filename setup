@@ -5,6 +5,7 @@ FILES="
     ctags
     gdbinit
     gitconfig
+    guile
     inputrc
     jshintrc
     lambda-term-inputrc

@@ -1,0 +1,9 @@
+(add-to-load-path
+  (string-append (dirname (current-filename)) "/guile-colorized"))
+
+(use-modules
+  (ice-9 readline)
+  (ice-9 colorized))
+
+(activate-readline)
+(activate-colorized)

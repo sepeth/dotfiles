@@ -7,3 +7,6 @@
 [submodule "bash/v"]
 	path = bash/v
 	url = https://github.com/rupa/v.git
+[submodule "guile-colorized"]
+	path = guile-colorized
+	url = https://gitlab.com/NalaGinrut/guile-colorized
