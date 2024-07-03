@@ -7,7 +7,6 @@ FILES="
     gitconfig
     guile
     inputrc
-    jshintrc
     lambda-term-inputrc
     psqlrc
     ripgreprc

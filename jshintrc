@@ -1,9 +1,0 @@
-{
-    "laxcomma": true,
-    "browser": true,
-    "jquery": true,
-    "devel": true,
-    "es5": true,
-    "newcap": true,
-    "eqnull": true
-}
