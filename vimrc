@@ -21,26 +21,13 @@ Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomasr/molokai'
 Plugin 'ctrlpvim/ctrlp.vim'
-Bundle 'ervandew/supertab'
-Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
 Plugin 'prettier/vim-prettier'
 Plugin 'mattn/emmet-vim'
-Plugin 'mxw/vim-jsx'
 Plugin 'groenewege/vim-less'
 Plugin 'scrooloose/syntastic'
-Plugin 'rking/ag.vim'
 Plugin 'tmhedberg/SimpylFold'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
-Plugin 'racer-rust/vim-racer'
-Plugin 'sevko/vim-nand2tetris-syntax'
 Plugin 'Raimondi/delimitMate'
-Plugin 'ElmCast/elm-vim'
-Plugin 'reasonml-editor/vim-reason-plus'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'tyrannicaltoucan/vim-deep-space'
 call vundle#end()
 " }}}
 
@@ -303,18 +290,5 @@ augroup filetype_rust
   au FileType rust nmap <leader>gd <Plug>(rust-doc)
 augroup END
 " }}}
-
-" Snippets and YCM {{{
-" Copied from here: https://stackoverflow.com/a/22253548
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" "}}}
 
 silent! source .vimlocal
