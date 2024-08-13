@@ -1,6 +1,6 @@
 [user]
 	name = Doğan Çeçen
-	email = sepeth@gmail.com
+	email = sepeth@hey.com
 [color]
 	ui = yes
 	pager = yes
@@ -10,7 +10,6 @@
 	lo = log --oneline --decorate
 	st = status --short --branch
 	ci = commit
-	br = branch
 	lb = for-each-ref refs/heads --count=10 --format='%(refname:short)' --sort=-committerdate
 	co = checkout
 	unstage = reset HEAD --
@@ -24,11 +23,15 @@
 	staash = stash --include-untracked
 	staaash = stash --all
 	merc = merge --no-ff
+	sy = !legit sync
 	sync = !legit sync
-	sw = !legit switch
+	pub = !legit publish
 	publish = !legit publish
+	unp = !legit unpublish
 	unpublish = !legit unpublish
+	un = !legit undo
 	undo = !legit undo
+	br = !legit branches
 	branches = !legit branches
 [push]
 	default = simple
