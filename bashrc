@@ -41,11 +41,7 @@ alias serve='python -m SimpleHTTPServer'
 alias tree='tree -C'
 alias trls='tree -C |less'
 alias fnls='find . |less'
-alias ag='ag --pager less'
-alias pyag='ag --python'
-alias jsag='ag --js'
 alias k2='kill -2'
-alias hcat='pygmentize -g'
 alias bc='bc -ql'
 alias gdb='gdb -q'
 alias suniq='sort |uniq'
@@ -54,21 +50,6 @@ alias suniq='sort |uniq'
 alias gd='git diff'
 alias ga='git add'
 alias gst='git status --short --branch'
-
-## Directory bookmarks
-alias m1='alias g1="cd `pwd`"'
-alias m2='alias g2="cd `pwd`"'
-alias m3='alias g3="cd `pwd`"'
-alias m4='alias g4="cd `pwd`"'
-alias m5='alias g5="cd `pwd`"'
-alias m6='alias g6="cd `pwd`"'
-alias m7='alias g7="cd `pwd`"'
-alias m8='alias g8="cd `pwd`"'
-alias m9='alias g9="cd `pwd`"'
-alias mdump='alias|grep -e "alias g[0-9]"|grep -v "alias m" > ~/.bookmarks'
-alias lma='alias | grep -e "alias g[0-9]"|grep -v "alias m"|sed "s/alias //"'
-touch ~/.bookmarks
-source ~/.bookmarks
 
 alias sqlite3='sqlite3 -column -header'
 
