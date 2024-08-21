@@ -1,6 +1,25 @@
 [user]
 	name = Doğan Çeçen
 	email = sepeth@hey.com
+
+[diff "scheme"]
+	xfuncname = "^(\\(define.*)$"
+
+[diff "texinfo"]
+	xfuncname = "^@node[[:space:]]+([^,]+).*$"
+
+[format]
+	forceinbodyfrom = true  # help preserve commit authorship
+	thread = shallow
+	useAutoBase = true
+
+[sendemail]
+	thread = no
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = sepeth@gmail.com
+	smtpServerPort = 587
+
 [color]
 	ui = yes
 	pager = yes
