@@ -23,14 +23,20 @@
 [color]
 	ui = yes
 	pager = yes
+
 [core]
 	pager = less
+
+[push]
+	default = simple
+
 [alias]
 	lo = log --oneline --decorate
 	st = status --short --branch
 	ci = commit
 	lb = for-each-ref refs/heads --count=10 --format='%(refname:short)' --sort=-committerdate
 	co = checkout
+	sw = switch
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	staged = diff --cached
@@ -53,5 +59,3 @@
 	br = !legit branches
 	branches = !legit branches
 	bb = "!f() { git checkout -b \"backup-$(date +'%Y%m%d_%H%M')\"; git checkout -; }; f"
-[push]
-	default = simple
