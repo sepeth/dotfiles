@@ -6,6 +6,7 @@ FILES="
     gdbinit
     gitconfig
     guile
+    ipython
     inputrc
     lambda-term-inputrc
     psqlrc
