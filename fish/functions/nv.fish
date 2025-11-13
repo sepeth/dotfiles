@@ -1,3 +1,3 @@
 function nv
-    neovide --fork 
+    neovide --fork $argv
 end
