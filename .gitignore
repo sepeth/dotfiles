@@ -6,8 +6,7 @@ local_*
 .netrwhist
 .DS_Store
 rlwrap/*_history
-/fish
-!/fish/functions
+/fish/fish_variables
 /fish/functions/*tide*
 /fish/functions/__z*
 /fish/functions/fish_prompt.fish
