@@ -6,9 +6,16 @@ local_*
 .netrwhist
 .DS_Store
 rlwrap/*_history
-/fish/fish_variables
+/fish/functions/_*
 /fish/functions/*tide*
 /fish/functions/__z*
 /fish/functions/fish_prompt.fish
 /fish/functions/fish_mode_prompt.fish
+/fish/fish_plugins
+/fish/fish_variables
+/fish/fish_variables.*
+/fish/fishd.tmp.*
+/fish/completions/
+/fish/conf.d/
+/fish/config.fish
 /vim/bundle/

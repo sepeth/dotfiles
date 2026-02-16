@@ -17,6 +17,39 @@ FILES="
 "
 
 BASEDIR=$(pwd)
+MODE="nix"
+
+usage() {
+    echo "Usage: $0 [--legacy] [--target TARGET]"
+    echo "  --legacy  Run the previous symlink/Vundle flow"
+    echo "  --target  Home Manager flake target (default: auto-detect)"
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --legacy)
+            MODE="legacy"
+            shift
+            ;;
+        --target)
+            if [ -z "$2" ]; then
+                echo "--target requires a value"
+                exit 1
+            fi
+            TARGET="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+    esac
+done
 
 safe_link() {
     in="$BASEDIR/$1"
@@ -45,12 +78,44 @@ safe_link() {
     cd $OLDPWD
 }
 
-for f in $FILES; do
-    safe_link "$f"
-done
+if [ "$MODE" = "legacy" ]; then
+    for f in $FILES; do
+        safe_link "$f"
+    done
 
-safe_link "fish" ".config/fish"
+    safe_link "fish" ".config/fish"
 
-git submodule update --init
+    git submodule update --init
+    vim +PluginInstall +qall
+else
+    if command -v nix >/dev/null 2>&1; then
+        if [ -z "$TARGET" ]; then
+            case "$(uname -s)" in
+                Darwin)
+                    TARGET="sepeth-darwin"
+                    ;;
+                Linux)
+                    if [ "$(uname -m)" = "aarch64" ]; then
+                        TARGET="sepeth-linux-arm"
+                    else
+                        TARGET="sepeth-linux"
+                    fi
+                    ;;
+                *)
+                    echo "Unsupported OS; use --legacy or set a target manually."
+                    exit 1
+                    ;;
+            esac
+        fi
 
-vim +PluginInstall +qall
+        # Note: `DOTFILES_REPO` is used by the activation hook to run `git submodule
+        # update --init` and to link `Vundle.vim` from your working tree. It requires
+        # `--impure` so Nix can read the environment variable.
+        DOTFILES_REPO="$BASEDIR" \
+        NIX_CONFIG="experimental-features = nix-command flakes" \
+            nix run nixpkgs#home-manager -- switch --flake .#"$TARGET" --impure
+    else
+        echo "nix is not available; run with --legacy or install Nix."
+        exit 1
+    fi
+fi
