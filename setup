@@ -18,6 +18,8 @@ FILES="
 
 BASEDIR=$(pwd)
 MODE="nix"
+ASTRONVIM_REPO="${ASTRONVIM_REPO:-git@github.com:sepeth/astronvim_conf.git}"
+ASTRONVIM_DIR="${ASTRONVIM_DIR:-$HOME/.config/nvim}"
 
 usage() {
     echo "Usage: $0 [--legacy] [--target TARGET]"
@@ -78,6 +80,23 @@ safe_link() {
     cd $OLDPWD
 }
 
+install_astronvim() {
+    if ! command -v git >/dev/null 2>&1; then
+        echo "git is not available; skipping AstroNvim config"
+        return
+    fi
+
+    mkdir -p "$(dirname "$ASTRONVIM_DIR")"
+    if [ -d "$ASTRONVIM_DIR/.git" ]; then
+        echo "AstroNvim config already present at $ASTRONVIM_DIR"
+    elif [ -e "$ASTRONVIM_DIR" ]; then
+        echo "Existing $ASTRONVIM_DIR found; skipping AstroNvim config"
+    else
+        git clone "$ASTRONVIM_REPO" "$ASTRONVIM_DIR"
+        echo "Cloned AstroNvim config to $ASTRONVIM_DIR"
+    fi
+}
+
 if [ "$MODE" = "legacy" ]; then
     for f in $FILES; do
         safe_link "$f"
@@ -87,6 +106,7 @@ if [ "$MODE" = "legacy" ]; then
 
     git submodule update --init
     vim +PluginInstall +qall
+    install_astronvim
 else
     if command -v nix >/dev/null 2>&1; then
         if [ -z "$TARGET" ]; then
@@ -112,6 +132,8 @@ else
         # update --init` and to link `Vundle.vim` from your working tree. It requires
         # `--impure` so Nix can read the environment variable.
         DOTFILES_REPO="$BASEDIR" \
+        ASTRONVIM_REPO="$ASTRONVIM_REPO" \
+        ASTRONVIM_DIR="$ASTRONVIM_DIR" \
         NIX_CONFIG="experimental-features = nix-command flakes" \
             nix run nixpkgs#home-manager -- switch --flake .#"$TARGET" --impure
     else

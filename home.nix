@@ -29,6 +29,7 @@ in
   home.packages = with pkgs; [
     fish
     git
+    openssh
     tmux
     vim
   ];
@@ -69,6 +70,24 @@ in
         export PATH="${pkgs.git}/bin:${pkgs.vim}/bin:$PATH"
         mkdir -p "$HOME/.cache"
         ${pkgs.vim}/bin/vim -E -s -u "$HOME/.vimrc" +PluginInstall +qall >"$HOME/.cache/vundle-install.log" 2>&1 || true
+      fi
+    fi
+
+    if [ -x "${pkgs.git}/bin/git" ]; then
+      export PATH="${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
+      nvim_dir="$ASTRONVIM_DIR"
+      nvim_repo="$ASTRONVIM_REPO"
+      if [ -n "$nvim_dir" ] && [ -n "$nvim_repo" ]; then
+        if [ -d "$nvim_dir/.git" ]; then
+          ${pkgs.git}/bin/git -C "$nvim_dir" pull --ff-only || true
+        elif [ -e "$nvim_dir" ]; then
+          echo "Existing $nvim_dir found; skipping AstroNvim config"
+        else
+          mkdir -p "$HOME/.config"
+          ${pkgs.git}/bin/git clone "$nvim_repo" "$nvim_dir"
+        fi
+      else
+        echo "ASTRONVIM_DIR/ASTRONVIM_REPO not set; skipping AstroNvim config"
       fi
     fi
   '';
