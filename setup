@@ -135,7 +135,7 @@ else
         ASTRONVIM_REPO="$ASTRONVIM_REPO" \
         ASTRONVIM_DIR="$ASTRONVIM_DIR" \
         NIX_CONFIG="experimental-features = nix-command flakes" \
-            nix run nixpkgs#home-manager -- switch --flake .#"$TARGET" --impure
+            nix run nixpkgs#home-manager -- switch --flake .#"$TARGET" --impure -b bak
     else
         echo "nix is not available; run with --legacy or install Nix."
         exit 1
