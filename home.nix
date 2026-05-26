@@ -1,49 +1,58 @@
 { pkgs, lib, ... }:
 let
   dotfilesRepo = builtins.getEnv "DOTFILES_REPO";
+  user = builtins.getEnv "USER";
+  homeDir = builtins.getEnv "HOME";
   homebrewPaths = [
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
   ];
-  fishSource = lib.cleanSourceWith {
-    src = ./fish;
-    filter = path: type:
-      let
-        baseName = builtins.baseNameOf path;
-      in
-        baseName != "fish_variables"
-        && !lib.hasPrefix "fish_variables." baseName
-        && !lib.hasPrefix "fishd.tmp." baseName;
-  };
 in
 {
-  home.username = "sepeth";
+  home.username = user;
   home.homeDirectory =
-    if pkgs.stdenv.isDarwin then "/Users/sepeth" else "/home/sepeth";
+    if homeDir != "" then homeDir
+    else if pkgs.stdenv.isDarwin then "/Users/${user}"
+    else "/home/${user}";
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set -g fish_greeting
+
+      if set -q SSH_TTY
+        echo (prompt_hostname) "via SSH"
+      end
+    '';
+    functions._tide_item_nix_shell = ''
+      set -q IN_NIX_SHELL && _tide_print_item nix_shell $tide_nix_shell_icon
+    '';
+    plugins = [
+      {
+        name = "tide";
+        src = pkgs.fishPlugins.tide.src;
+      }
+    ];
+  };
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   home.sessionPath = homebrewPaths;
 
   home.packages = with pkgs; [
-    fish
     git
     openssh
     tmux
     vim
   ];
 
-  xdg.configFile."fish".source = fishSource;
-  xdg.configFile."fish".recursive = true;
-  xdg.configFile."fish/conf.d/homebrew-path.fish".text =
-    let
-      fishAddPath = lib.concatMapStringsSep "\n" (path: "  fish_add_path " + path) homebrewPaths;
-    in ''
-      if test -d /opt/homebrew/bin
-      ${fishAddPath}
-      end
-    '';
+  xdg.configFile."fish/functions".source = ./fish/functions;
+  xdg.configFile."fish/functions".recursive = true;
+  xdg.configFile."fish/conf.d/homebrew-path.fish".source = ./fish/conf.d/homebrew-path.fish;
   home.file.".gitconfig".source = ./gitconfig;
   home.file.".tmux.conf".source = ./tmux.conf;
   home.file.".vimrc".source = ./vimrc;
@@ -90,5 +99,24 @@ in
         echo "ASTRONVIM_DIR/ASTRONVIM_REPO not set; skipping AstroNvim config"
       fi
     fi
+  '';
+
+  home.activation.tideBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    fish_variables="$HOME/.config/fish/fish_variables"
+
+    if ! grep -q '^SETUVAR tide_left_prompt_items:' "$fish_variables" 2>/dev/null; then
+      mkdir -p "$HOME/.config/fish"
+      ${pkgs.fish}/bin/fish -ic "
+        tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Compact --icons='Few icons' --transient=No
+      "
+    fi
+
+    ${pkgs.fish}/bin/fish -ic "
+      set -U tide_right_prompt_items (for item in \$tide_right_prompt_items
+        if not contains \$item rustc kubectl
+          echo \$item
+        end
+      end)
+    "
   '';
 }

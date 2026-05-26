@@ -23,6 +23,10 @@ Note: fish writes `fish_variables` at runtime, so the Home Manager config
 excludes that file from the managed `~/.config/fish` directory to avoid
 permission errors.
 
+Fish plugins are managed declaratively through Home Manager in this repo.
+`home.nix` enables Fish, installs the `tide` prompt, and enables `zoxide`
+integration for Fish across all configured targets.
+
 ## Known issues
 
 * fish's `funced` and `funcsave` don't work as expected anymore. After
