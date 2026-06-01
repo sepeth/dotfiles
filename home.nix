@@ -42,9 +42,15 @@ in
   };
 
   home.sessionPath = homebrewPaths;
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    SUDO_EDITOR = "nvim";
+  };
 
   home.packages = with pkgs; [
     git
+    neovim
     openssh
     tmux
     vim
