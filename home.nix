@@ -140,6 +140,26 @@ in
     ) #TabsToolbar {
       visibility: collapse !important;
     }
+
+    #sidebar-header {
+      font-size: 1em !important;
+      min-height: 28px !important;
+      padding-block: 4px !important;
+    }
+
+    #sidebar-close {
+      width: 24px !important;
+      height: 24px !important;
+      min-width: 24px !important;
+      min-height: 24px !important;
+      padding: 0 !important;
+    }
+
+    #sidebar-close > .toolbarbutton-icon {
+      width: 12px !important;
+      height: 12px !important;
+      padding: 0 !important;
+    }
   '';
 
   home.activation.firefoxProfileBootstrap = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
