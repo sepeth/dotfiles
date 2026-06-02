@@ -59,6 +59,7 @@ in
   xdg.configFile."fish/functions".source = ./fish/functions;
   xdg.configFile."fish/functions".recursive = true;
   xdg.configFile."fish/conf.d/homebrew-path.fish".source = ./fish/conf.d/homebrew-path.fish;
+
   home.file.".gitconfig".source = ./gitconfig;
   home.file.".tmux.conf".source = ./tmux.conf;
   home.file.".vimrc".source = ./vimrc;
@@ -124,5 +125,59 @@ in
         end
       end)
     "
+  '';
+
+  # Setup Firefox profile
+  # Firefox itself is installed through Homebrew, including Developer Edition.
+  # That's why I can't use programs.firefox.profiles
+  home.file."Library/Application Support/Firefox/Profiles/dotfiles/user.js".text = ''
+    user_pref("browser.tabs.inTitlebar", 0);
+    user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+  '';
+  home.file."Library/Application Support/Firefox/Profiles/dotfiles/chrome/userChrome.css".text = ''
+    #main-window:has(
+      #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:not([hidden])
+    ) #TabsToolbar {
+      visibility: collapse !important;
+    }
+  '';
+
+  home.activation.firefoxProfileBootstrap = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    firefox_dir="$HOME/Library/Application Support/Firefox"
+    mkdir -p "$firefox_dir/Profiles/dotfiles"
+
+    if [ -L "$firefox_dir/profiles.ini" ]; then
+      rm "$firefox_dir/profiles.ini"
+    fi
+
+    cat >"$firefox_dir/profiles.ini" <<'EOF'
+    [Profile0]
+    Name=dotfiles
+    IsRelative=1
+    Path=Profiles/dotfiles
+    Default=1
+
+    [General]
+    StartWithLastProfile=1
+    Version=2
+
+    [InstallAB92965EBB8B747A]
+    Default=Profiles/dotfiles
+    Locked=1
+
+    [Install1F42C145FFDD4120]
+    Default=Profiles/dotfiles
+    Locked=1
+    EOF
+
+    cat >"$firefox_dir/installs.ini" <<'EOF'
+    [AB92965EBB8B747A]
+    Default=Profiles/dotfiles
+    Locked=1
+
+    [1F42C145FFDD4120]
+    Default=Profiles/dotfiles
+    Locked=1
+    EOF
   '';
 }
