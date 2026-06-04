@@ -141,6 +141,11 @@ in
       visibility: collapse !important;
     }
 
+    /* Make the icons in the toolbar grayscale */
+    .webextension-browser-action > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+      filter: grayscale(1) contrast(1.15) !important;
+    }
+
     #sidebar-header {
       font-size: 1em !important;
       min-height: 28px !important;
