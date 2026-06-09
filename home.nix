@@ -41,6 +41,13 @@ in
     enableFishIntegration = true;
   };
 
+  programs.direnv = {
+    enable = true;
+    config.global.load_dotenv = true;
+    nix-direnv.enable = true;
+    enableFishIntegration = true;
+  };
+
   home.sessionPath = homebrewPaths;
   home.sessionVariables = {
     EDITOR = "nvim";
