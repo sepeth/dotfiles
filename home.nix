@@ -29,6 +29,12 @@ in
     functions._tide_item_nix_shell = ''
       set -q IN_NIX_SHELL && _tide_print_item nix_shell $tide_nix_shell_icon
     '';
+    functions._tide_item_node = ''
+      if path is $_tide_parent_dirs/package.json; and command -q node
+        node --version | string match -qr "v(?<v>.*)"
+        _tide_print_item node $tide_node_icon' ' $v
+      end
+    '';
     plugins = [
       {
         name = "tide";
