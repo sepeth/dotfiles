@@ -54,6 +54,11 @@ in
     enableFishIntegration = true;
   };
 
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   home.sessionPath = homebrewPaths;
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -123,6 +128,7 @@ in
 
   home.activation.tideBootstrap = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     fish_variables="$HOME/.config/fish/fish_variables"
+    export PATH="${pkgs.atuin}/bin:$PATH"
 
     if ! grep -q '^SETUVAR tide_left_prompt_items:' "$fish_variables" 2>/dev/null; then
       mkdir -p "$HOME/.config/fish"
