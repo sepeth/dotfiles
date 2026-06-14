@@ -109,16 +109,60 @@ in
 
     if [ -x "${pkgs.git}/bin/git" ]; then
       export PATH="${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
+
+      github_https_fallback() {
+        case "$1" in
+          git@github.com:*)
+            path="''${1#git@github.com:}"
+            echo "https://github.com/$path"
+            ;;
+          ssh://git@github.com/*)
+            path="''${1#ssh://git@github.com/}"
+            echo "https://github.com/$path"
+            ;;
+          *)
+            return 1
+            ;;
+        esac
+      }
+
+      git_clone_with_fallback() {
+        repo="$1"
+        dest="$2"
+
+        if ${pkgs.git}/bin/git clone "$repo" "$dest"; then
+          return 0
+        fi
+
+        fallback="$(github_https_fallback "$repo")" || return 1
+        echo "SSH clone failed; retrying with $fallback"
+        ${pkgs.git}/bin/git clone "$fallback" "$dest"
+      }
+
+      git_pull_with_fallback() {
+        dir="$1"
+        repo="$2"
+
+        if ${pkgs.git}/bin/git -C "$dir" pull --ff-only; then
+          return 0
+        fi
+
+        fallback="$(github_https_fallback "$repo")" || return 1
+        branch="$(${pkgs.git}/bin/git -C "$dir" symbolic-ref --quiet --short HEAD)" || return 1
+        echo "SSH pull failed; retrying $branch with $fallback"
+        ${pkgs.git}/bin/git -C "$dir" pull --ff-only "$fallback" "$branch"
+      }
+
       nvim_dir="$ASTRONVIM_DIR"
       nvim_repo="$ASTRONVIM_REPO"
       if [ -n "$nvim_dir" ] && [ -n "$nvim_repo" ]; then
         if [ -d "$nvim_dir/.git" ]; then
-          ${pkgs.git}/bin/git -C "$nvim_dir" pull --ff-only || true
+          git_pull_with_fallback "$nvim_dir" "$nvim_repo" || true
         elif [ -e "$nvim_dir" ]; then
           echo "Existing $nvim_dir found; skipping AstroNvim config"
         else
           mkdir -p "$HOME/.config"
-          ${pkgs.git}/bin/git clone "$nvim_repo" "$nvim_dir"
+          git_clone_with_fallback "$nvim_repo" "$nvim_dir"
         fi
       else
         echo "ASTRONVIM_DIR/ASTRONVIM_REPO not set; skipping AstroNvim config"

@@ -21,6 +21,35 @@ MODE="nix"
 ASTRONVIM_REPO="${ASTRONVIM_REPO:-git@github.com:sepeth/astronvim_conf.git}"
 ASTRONVIM_DIR="${ASTRONVIM_DIR:-$HOME/.config/nvim}"
 
+github_https_fallback() {
+    case "$1" in
+        git@github.com:*)
+            path="${1#git@github.com:}"
+            echo "https://github.com/$path"
+            ;;
+        ssh://git@github.com/*)
+            path="${1#ssh://git@github.com/}"
+            echo "https://github.com/$path"
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+git_clone_with_fallback() {
+    repo="$1"
+    dest="$2"
+
+    if git clone "$repo" "$dest"; then
+        return 0
+    fi
+
+    fallback="$(github_https_fallback "$repo")" || return 1
+    echo "SSH clone failed; retrying with $fallback"
+    git clone "$fallback" "$dest"
+}
+
 usage() {
     echo "Usage: $0 [--legacy] [--target TARGET]"
     echo "  --legacy  Run the previous symlink/Vundle flow"
@@ -92,7 +121,7 @@ install_astronvim() {
     elif [ -e "$ASTRONVIM_DIR" ]; then
         echo "Existing $ASTRONVIM_DIR found; skipping AstroNvim config"
     else
-        git clone "$ASTRONVIM_REPO" "$ASTRONVIM_DIR"
+        git_clone_with_fallback "$ASTRONVIM_REPO" "$ASTRONVIM_DIR"
         echo "Cloned AstroNvim config to $ASTRONVIM_DIR"
     fi
 }
