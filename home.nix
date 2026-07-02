@@ -47,6 +47,11 @@ in
     enableFishIntegration = true;
   };
 
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.direnv = {
     enable = true;
     config.global.load_dotenv = true;
