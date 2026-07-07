@@ -77,6 +77,7 @@ in
   };
 
   home.packages = with pkgs; [
+    fd
     git
     neovim
     openssh
