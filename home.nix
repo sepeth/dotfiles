@@ -69,7 +69,9 @@ in
     enableFishIntegration = true;
   };
 
-  home.sessionPath = homebrewPaths;
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ] ++ homebrewPaths;
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
