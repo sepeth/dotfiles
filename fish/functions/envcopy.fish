@@ -28,8 +28,13 @@ function envcopy --description "Copy .env files from source to destination, pres
     set -l destination_abs (path resolve $destination_dir)
     set -l copied 0
     set -l skipped 0
+    set -l env_file_names -name '.env' -o -name '.envrc'
+    set -l ignored_paths \
+        -not -path '*/node_modules/*' \
+        -not -path '*/.git/*' \
+        -not -path '*/target/*'
 
-    for source_file in (find $source_abs -name '.env*' -type f -not -path '*/node_modules/*' -not -path '*/.git/*' -not -path '*/target/*' | sort)
+    for source_file in (find $source_abs \( $env_file_names \) -type f $ignored_paths | sort)
         set -l relative_file (string replace -- "$source_abs/" '' $source_file)
         set -l destination_file "$destination_abs/$relative_file"
 
