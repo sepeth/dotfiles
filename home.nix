@@ -74,6 +74,7 @@ in
   ] ++ homebrewPaths;
   home.sessionVariables = {
     EDITOR = "nvim";
+    MANPAGER = "less -FX";
     VISUAL = "nvim";
     SUDO_EDITOR = "nvim";
   };
