@@ -219,8 +219,11 @@ in
       visibility: collapse !important;
     }
 
-    /* Make the icons in the toolbar grayscale */
-    .webextension-browser-action > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+    /* Make only pinned extension icons in the toolbar grayscale. */
+    #nav-bar-customization-target
+      .webextension-browser-action
+      > .toolbarbutton-badge-stack
+      > .toolbarbutton-icon {
       filter: grayscale(1) contrast(1.15) !important;
     }
 
