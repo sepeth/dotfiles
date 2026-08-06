@@ -70,6 +70,14 @@ in
     enableFishIntegration = true;
   };
 
+  programs.jujutsu = {
+    enable = true;
+    settings.ui = {
+      pager = "delta";
+      diff-formatter = ":git";
+    };
+  };
+
   home.sessionPath = [
     "$HOME/.local/bin"
   ] ++ homebrewPaths;
@@ -81,6 +89,7 @@ in
   };
 
   home.packages = with pkgs; [
+    delta
     fd
     git
     neovim
