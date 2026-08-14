@@ -15,6 +15,5 @@ rlwrap/*_history
 /fish/fish_variables
 /fish/fish_variables.*
 /fish/fishd.tmp.*
-/fish/completions/
 /fish/config.fish
 /vim/bundle/

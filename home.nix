@@ -100,6 +100,8 @@ in
 
   xdg.configFile."fish/functions".source = ./fish/functions;
   xdg.configFile."fish/functions".recursive = true;
+  xdg.configFile."fish/completions".source = ./fish/completions;
+  xdg.configFile."fish/completions".recursive = true;
   xdg.configFile."fish/conf.d/homebrew-path.fish".source = ./fish/conf.d/homebrew-path.fish;
 
   home.file.".gitconfig".source = ./gitconfig;
