@@ -72,6 +72,10 @@ in
 
   programs.jujutsu = {
     enable = true;
+    settings.user = {
+      name = "Doğan Çeçen";
+      email = "dogan.cecen@red-badger.com";
+    };
     settings.ui = {
       pager = "delta";
       diff-formatter = ":git";
