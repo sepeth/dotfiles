@@ -86,7 +86,9 @@ in
     "$HOME/.local/bin"
   ] ++ homebrewPaths;
   home.sessionVariables = {
+    DELTA_PAGER = "less -FRX";
     EDITOR = "nvim";
+    LESS = "-FRX";
     MANPAGER = "less -FX";
     VISUAL = "nvim";
     SUDO_EDITOR = "nvim";
