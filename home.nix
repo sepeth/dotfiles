@@ -7,6 +7,11 @@ let
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
   ];
+  neovimViAliases = pkgs.runCommand "neovim-vi-aliases" { } ''
+    mkdir -p "$out/bin"
+    ln -s "${pkgs.neovim}/bin/nvim" "$out/bin/vi"
+    ln -s "${pkgs.neovim}/bin/nvim" "$out/bin/vim"
+  '';
 in
 {
   home.username = user;
@@ -99,9 +104,9 @@ in
     fd
     git
     neovim
+    neovimViAliases
     openssh
     tmux
-    vim
   ];
 
   xdg.configFile."fish/functions".source = ./fish/functions;
