@@ -1,0 +1,12 @@
+onboarding = false
+
+[terminal]
+default_shell = "fish"
+
+[keys]
+prefix = "ctrl+t"
+previous_workspace = "prefix+p"
+next_workspace = "prefix+n"
+switch_workspace = "prefix+shift+1..9"
+previous_tab = "prefix+comma"
+next_tab = "prefix+period"

@@ -114,6 +114,7 @@ in
   xdg.configFile."fish/completions".source = ./fish/completions;
   xdg.configFile."fish/completions".recursive = true;
   xdg.configFile."fish/conf.d/homebrew-path.fish".source = ./fish/conf.d/homebrew-path.fish;
+  xdg.configFile."herdr/config.toml".source = ./herdr/config.toml;
 
   home.file.".gitconfig".source = ./gitconfig;
   home.file.".tmux.conf".source = ./tmux.conf;
