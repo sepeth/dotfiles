@@ -92,21 +92,28 @@ safe_link() {
     fi
 
     cd ~
+    mkdir -p "$(dirname "$out")"
+    backup="._$1"
+    case "$1" in
+        */*) backup="$(dirname "$out")/._$(basename "$1")" ;;
+    esac
     if [ -h "$out" ]; then
         echo "Already symlinked $out"
-        cd $OLDPWD
+        cd "$OLDPWD"
         return
     elif [ -f "$out" ] || [ -d "$out" ]; then
-        if [ ! -f "._$1" ]; then
-            echo "There's an existing $out, moving to ._$1"
-            mv "$out" "$(dirname $out)/._$1"
+        if [ ! -e "$backup" ] && [ ! -h "$backup" ]; then
+            echo "There's an existing $out, moving to $backup"
+            mv "$out" "$backup"
         else
-            echo "There's already ._$1, can't create backup, skipping..."
-        fi 
+            echo "There's already $backup, can't create backup, skipping..."
+            cd "$OLDPWD"
+            return
+        fi
     fi
-    ln -s $in $out
+    ln -s "$in" "$out"
     echo "Symlinked $out"
-    cd $OLDPWD
+    cd "$OLDPWD"
 }
 
 install_astronvim() {
@@ -156,6 +163,8 @@ if [ "$MODE" = "legacy" ]; then
     done
 
     safe_link "fish" ".config/fish"
+
+    safe_link "pi/keybindings.json" ".pi/agent/keybindings.json"
 
     git submodule update --init
     vim +PluginInstall +qall

@@ -1,0 +1,8 @@
+{
+  "tui.editor.historyPrevious": "ctrl+p",
+  "tui.editor.historyNext": "ctrl+n",
+  "app.model.cycleForward": [],
+  "app.model.cycleBackward": [],
+  "app.session.togglePath": [],
+  "app.session.toggleNamedFilter": []
+}

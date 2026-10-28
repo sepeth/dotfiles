@@ -27,6 +27,9 @@ Fish plugins are managed declaratively through Home Manager in this repo.
 `home.nix` enables Fish, installs the `tide` prompt, and enables `zoxide`
 integration for Fish across all configured targets.
 
+Pi keybindings live in `pi/keybindings.json`. Home Manager and
+`./setup --legacy` link the file into `~/.pi/agent`.
+
 ## Known issues
 
 * fish's `funced` and `funcsave` don't work as expected anymore. After

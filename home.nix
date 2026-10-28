@@ -3,6 +3,9 @@ let
   dotfilesRepo = builtins.getEnv "DOTFILES_REPO";
   user = builtins.getEnv "USER";
   homeDir = builtins.getEnv "HOME";
+  piSource = path:
+    if dotfilesRepo != "" then config.lib.file.mkOutOfStoreSymlink "${dotfilesRepo}/pi/${path}"
+    else ./pi + "/${path}";
   homebrewPaths = [
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
@@ -120,6 +123,8 @@ in
   home.file."Library/Application Support/tuios/config.toml".source =
     if dotfilesRepo != "" then config.lib.file.mkOutOfStoreSymlink "${dotfilesRepo}/tuios/config.toml"
     else ./tuios/config.toml;
+
+  home.file.".pi/agent/keybindings.json".source = piSource "keybindings.json";
 
   home.file.".gitconfig".source = ./gitconfig;
   home.file.".tmux.conf".source = ./tmux.conf;
