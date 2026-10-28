@@ -132,7 +132,17 @@ install_herdr_plugins() {
         return
     fi
 
-    plugins="$(herdr plugin list --plugin mroth.jj-status --json)" || return 1
+    if ! plugins="$(herdr plugin list --plugin mroth.jj-status --json 2>&1)"; then
+        case "$plugins" in
+            *'"code":"unsupported"'*'tuios does not answer plugin.list'*)
+                return
+                ;;
+            *)
+                printf '%s\n' "$plugins" >&2
+                return 1
+                ;;
+        esac
+    fi
     if printf '%s\n' "$plugins" | grep -Eq '"plugin_id"[[:space:]]*:[[:space:]]*"mroth[.]jj-status"'; then
         return
     fi
