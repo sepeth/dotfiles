@@ -125,6 +125,7 @@ in
     else ./tuios/config.toml;
 
   home.file.".pi/agent/keybindings.json".source = piSource "keybindings.json";
+  home.file.".pi/agent/extensions/ctrl-p-editor.ts".source = piSource "extensions/ctrl-p-editor.ts";
 
   home.file.".gitconfig".source = ./gitconfig;
   home.file.".tmux.conf".source = ./tmux.conf;

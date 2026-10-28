@@ -27,8 +27,10 @@ Fish plugins are managed declaratively through Home Manager in this repo.
 `home.nix` enables Fish, installs the `tide` prompt, and enables `zoxide`
 integration for Fish across all configured targets.
 
-Pi keybindings live in `pi/keybindings.json`. Home Manager and
-`./setup --legacy` link the file into `~/.pi/agent`.
+Pi keybindings live in `pi/keybindings.json`. The `pi/extensions/ctrl-p-editor.ts`
+extension makes Ctrl+P move up when the editor has text and browse history
+only when it is empty. Home Manager and `./setup --legacy` link both files into
+`~/.pi/agent`.
 
 ## Known issues
 
