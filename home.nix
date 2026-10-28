@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   dotfilesRepo = builtins.getEnv "DOTFILES_REPO";
   user = builtins.getEnv "USER";
@@ -118,7 +118,7 @@ in
   xdg.configFile."herdr/config.toml".source = ./herdr/config.toml;
 
   home.file."Library/Application Support/tuios/config.toml".source =
-    if dotfilesRepo != "" then lib.file.mkOutOfStoreSymlink "${dotfilesRepo}/tuios/config.toml"
+    if dotfilesRepo != "" then config.lib.file.mkOutOfStoreSymlink "${dotfilesRepo}/tuios/config.toml"
     else ./tuios/config.toml;
 
   home.file.".gitconfig".source = ./gitconfig;
