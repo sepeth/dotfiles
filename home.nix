@@ -117,6 +117,10 @@ in
   xdg.configFile."fish/conf.d/homebrew-path.fish".source = ./fish/conf.d/homebrew-path.fish;
   xdg.configFile."herdr/config.toml".source = ./herdr/config.toml;
 
+  home.file."Library/Application Support/tuios/config.toml".source =
+    if dotfilesRepo != "" then lib.file.mkOutOfStoreSymlink "${dotfilesRepo}/tuios/config.toml"
+    else ./tuios/config.toml;
+
   home.file.".gitconfig".source = ./gitconfig;
   home.file.".tmux.conf".source = ./tmux.conf;
   home.file.".vimrc".source = ./vimrc;
