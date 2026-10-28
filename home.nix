@@ -103,6 +103,7 @@ in
     delta
     fd
     git
+    jq
     neovim
     neovimViAliases
     openssh

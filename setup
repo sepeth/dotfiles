@@ -126,6 +126,20 @@ install_astronvim() {
     fi
 }
 
+install_herdr_plugins() {
+    if ! command -v herdr >/dev/null 2>&1; then
+        echo "Herdr is not available; skipping plugin installation"
+        return
+    fi
+
+    plugins="$(herdr plugin list --plugin mroth.jj-status --json)" || return 1
+    if printf '%s\n' "$plugins" | grep -Eq '"plugin_id"[[:space:]]*:[[:space:]]*"mroth[.]jj-status"'; then
+        return
+    fi
+
+    herdr plugin install mroth/herdr-jj-status --ref 40588ef743e1dd6a252b2e39765616584fd2e39e --yes
+}
+
 if [ "$MODE" = "legacy" ]; then
     for f in $FILES; do
         safe_link "$f"
@@ -170,3 +184,5 @@ else
         exit 1
     fi
 fi
+
+install_herdr_plugins
