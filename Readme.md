@@ -28,9 +28,9 @@ Fish plugins are managed declaratively through Home Manager in this repo.
 integration for Fish across all configured targets.
 
 Pi keybindings live in `pi/keybindings.json`. The `pi/extensions/ctrl-p-editor.ts`
-extension makes Ctrl+P move up when the editor has text and browse history
-only when it is empty. Home Manager and `./setup --legacy` link both files into
-`~/.pi/agent`.
+extension makes Ctrl+P and Ctrl+N move up and down when the editor has text,
+and browse history only when it is empty. Home Manager and `./setup --legacy`
+link both files into `~/.pi/agent`.
 
 ## Known issues
 
