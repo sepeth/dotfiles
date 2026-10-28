@@ -57,8 +57,9 @@
 # clashes with what, and which keys never reach the program in the pane.
 #
 # [keybindings.global] acts in window mode and terminal mode alike. It binds
-# ctrl+p to the command palette and alt+space to the launcher, which costs
-# you fish's history-back and readline's set-mark. To move or drop either:
+# ctrl+p to the command palette and alt+space to the launcher by default.
+# The global command palette binding is disabled below; prefix+p opens it.
+# To move or drop either:
 #
 #   [keybindings.global]
 #   command_palette = ["ctrl+shift+p"]
@@ -321,7 +322,7 @@ next_session = [')']
 paste_image = ['V']
 prefix_close_session = ['X']
 prefix_close_window = ['x']
-prefix_command_palette = ['P']
+prefix_command_palette = ['p']
 prefix_debug = ['D']
 prefix_detach = ['d']
 prefix_equalize_splits = ['=']
@@ -331,16 +332,16 @@ prefix_file_search = ['f']
 prefix_fullscreen = ['z']
 prefix_help = ['?']
 prefix_inbox = ['i']
-prefix_jump_notif = ['j']
-prefix_keybinds = ['k']
+prefix_jump_notif = ['n']
+prefix_keybinds = ['K']
 prefix_layout = ['L']
 prefix_mail = ['M']
 prefix_minimize = ['m']
 prefix_new_window = ['c']
 prefix_next_attention = ['o']
 prefix_next_finished = ['O']
-prefix_next_window = ['n', 'tab']
-prefix_prev_window = ['p', 'shift+tab']
+prefix_next_window = ['tab']
+prefix_prev_window = ['shift+tab']
 prefix_quit = ['q']
 prefix_rename_window = ['r']
 prefix_review = ['v']
@@ -369,10 +370,10 @@ prefix_window = ['t']
 prefix_workspace = ['w']
 prefix_workspace_switcher = ['W']
 prev_session = ['(']
-terminal_focus_down = ['down']
-terminal_focus_left = ['left']
-terminal_focus_right = ['right']
-terminal_focus_up = ['up']
+terminal_focus_down = ['down', 'j']
+terminal_focus_left = ['left', 'h']
+terminal_focus_right = ['right', 'l']
+terminal_focus_up = ['up', 'k']
 toggle_scratch = ['g']
 
 [keybindings.window_prefix]
@@ -471,7 +472,7 @@ terminal_scroll_down = ['shift+down']
 terminal_scroll_up = ['shift+up']
 
 [keybindings.global]
-command_palette = ['ctrl+p']
+command_palette = []
 launcher = ['alt+space']
 
 [keybindings.script]
