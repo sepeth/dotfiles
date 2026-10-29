@@ -1,6 +1,7 @@
 {
   "tui.editor.historyPrevious": "ctrl+p",
   "tui.editor.historyNext": "ctrl+n",
+  "tui.editor.deleteCharBackward": ["backspace", "ctrl+h"],
   "app.model.cycleForward": [],
   "app.model.cycleBackward": [],
   "app.session.togglePath": [],
