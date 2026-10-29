@@ -97,11 +97,12 @@ safe_link() {
     case "$1" in
         */*) backup="$(dirname "$out")/._$(basename "$1")" ;;
     esac
-    if [ -h "$out" ]; then
+    if [ -h "$out" ] && [ "$(readlink "$out")" = "$in" ]; then
         echo "Already symlinked $out"
         cd "$OLDPWD"
         return
-    elif [ -f "$out" ] || [ -d "$out" ]; then
+    fi
+    if [ -h "$out" ] || [ -e "$out" ]; then
         if [ ! -e "$backup" ] && [ ! -h "$backup" ]; then
             echo "There's an existing $out, moving to $backup"
             mv "$out" "$backup"
