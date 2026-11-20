@@ -30,7 +30,9 @@ integration for Fish across all configured targets.
 Pi keybindings live in `pi/keybindings.json`. The `pi/extensions/ctrl-p-editor.ts`
 extension makes Ctrl+P and Ctrl+N move up and down when the editor has text,
 and browse history only when it is empty. Home Manager and `./setup --legacy`
-link both files into `~/.pi/agent`.
+link both files into `~/.pi/agent`. The `pi/extensions/multiline-bash-calls.ts`
+extension formats Bash tool calls across multiple lines for display; both setup
+flows link it into `~/.pi/agent/extensions`.
 
 ## Known issues
 

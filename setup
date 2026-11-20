@@ -167,6 +167,7 @@ if [ "$MODE" = "legacy" ]; then
 
     safe_link "pi/keybindings.json" ".pi/agent/keybindings.json"
     safe_link "pi/extensions/ctrl-p-editor.ts" ".pi/agent/extensions/ctrl-p-editor.ts"
+    safe_link "pi/extensions/multiline-bash-calls.ts" ".pi/agent/extensions/multiline-bash-calls.ts"
 
     git submodule update --init
     vim +PluginInstall +qall
