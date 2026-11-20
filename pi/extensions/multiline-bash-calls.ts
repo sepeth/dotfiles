@@ -45,6 +45,7 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 	let quote: "'" | '"' | "`" | undefined;
 	let escaped = false;
 	let parenDepth = 0;
+	const quotedSubstitutionDepths: number[] = [];
 	let parameterDepth = 0;
 	const groupIndents: number[] = [];
 	const baseIndent = () => groupIndents.length > 0 ? groupIndents[groupIndents.length - 1]! + 2 : 0;
@@ -75,6 +76,13 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 			escaped = true;
 			continue;
 		}
+		if (quote === '"' && char === "$" && command[i + 1] === "(") {
+			quotedSubstitutionDepths.push(parenDepth);
+			quote = undefined;
+			parenDepth++;
+			i++;
+			continue;
+		}
 		if (quote) {
 			if (char === quote) quote = undefined;
 			continue;
@@ -98,6 +106,10 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 		}
 		if (char === ")" && parenDepth > 0) {
 			parenDepth--;
+			if (quotedSubstitutionDepths.at(-1) === parenDepth) {
+				quotedSubstitutionDepths.pop();
+				quote = '"';
+			}
 			continue;
 		}
 		if (parenDepth > 0 || parameterDepth > 0) continue;
@@ -131,6 +143,8 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 			}
 			const opener = command.slice(i).match(/^<<(-?)[ \t]*(?:'([^'\n]+)'|"([^"\n]+)"|([A-Za-z_][\w-]*))/);
 			if (!opener) return command;
+			// A prefix match is not the delimiter of a longer shell word.
+			if (/[^\s;&|<>()]/.test(command[i + opener[0].length] ?? "")) return command;
 			const delimiter = opener[2] ?? opener[3] ?? opener[4]!;
 			const headerEnd = command.indexOf("\n", i + opener[0].length);
 			if (headerEnd < 0 || command.slice(i + opener[0].length, headerEnd).includes("<<")) return command;
