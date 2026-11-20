@@ -158,10 +158,12 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 				terminatorStart = terminatorEnd + 1;
 			}
 			if (terminatorStart >= command.length) return command;
-			// Format the shell header without changing the embedded language or terminator.
+			// Indent the embedded language once without changing its relative indentation or terminator.
 			const header = formatCommand(command.slice(0, headerEnd), true);
+			const indent = header.slice(header.lastIndexOf("\n") + 1).match(/^ */)?.[0] ?? "";
+			const body = command.slice(headerEnd + 1, terminatorStart).replace(/^(.+)$/gm, `${indent}  $1`);
 			const rest = command.slice(terminatorEnd + 1);
-			return `${header}\n${command.slice(headerEnd + 1, terminatorEnd)}${rest ? `\n${formatCommand(rest)}` : ""}`;
+			return `${header}\n${body}${command.slice(terminatorStart, terminatorEnd)}${rest ? `\n${formatCommand(rest)}` : ""}`;
 		}
 
 		const redirect = char === "<" || char === ">" || (char === "&" && command[i + 1] === ">");
