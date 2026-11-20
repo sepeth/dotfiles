@@ -162,7 +162,7 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 			const header = formatCommand(command.slice(0, headerEnd), true);
 			const indent = header.slice(header.lastIndexOf("\n") + 1).match(/^ */)?.[0] ?? "";
 			const body = command.slice(headerEnd + 1, terminatorStart).replace(/\n$/, "");
-			const bodyLines = body ? body.split("\n").map((line) => `${indent}  ${line}`).join("\n") + "\n" : "";
+			const bodyLines = terminatorStart > headerEnd + 1 ? body.split("\n").map((line) => `${indent}  ${line}`).join("\n") + "\n" : "";
 			const rest = command.slice(terminatorEnd + 1);
 			return `${header}\n${bodyLines}${indent}${command.slice(terminatorStart, terminatorEnd)}${rest ? `\n${formatCommand(rest)}` : ""}`;
 		}
