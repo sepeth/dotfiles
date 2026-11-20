@@ -158,13 +158,10 @@ function formatCommand(command: string, inlineHeredoc = false): string {
 				terminatorStart = terminatorEnd + 1;
 			}
 			if (terminatorStart >= command.length) return command;
-			// Keep the embedded language's punctuation out of shell operator scanning.
+			// Format the shell header without changing the embedded language or terminator.
 			const header = formatCommand(command.slice(0, headerEnd), true);
-			const indent = header.slice(header.lastIndexOf("\n") + 1).match(/^ */)?.[0] ?? "";
-			const body = command.slice(headerEnd + 1, terminatorStart).replace(/\n$/, "");
-			const bodyLines = terminatorStart > headerEnd + 1 ? body.split("\n").map((line) => `${indent}  ${line}`).join("\n") + "\n" : "";
 			const rest = command.slice(terminatorEnd + 1);
-			return `${header}\n${bodyLines}${indent}${command.slice(terminatorStart, terminatorEnd)}${rest ? `\n${formatCommand(rest)}` : ""}`;
+			return `${header}\n${command.slice(headerEnd + 1, terminatorEnd)}${rest ? `\n${formatCommand(rest)}` : ""}`;
 		}
 
 		const redirect = char === "<" || char === ">" || (char === "&" && command[i + 1] === ">");
